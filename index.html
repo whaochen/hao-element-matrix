@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>晧脈元素庫 · Hao Element Matrix</title>
+  <meta
+    name="description"
+    content="晧脈元素庫（Hao Element Matrix）以 118 化學元素週期表為視覺隱喻，收錄環境碳足跡、政策脈絡、工程模擬與 AI 協作數位系統。"
+  />
+  <meta name="theme-color" content="#050811" />
+
+  <!-- Open Graph / Social Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="晧脈元素庫 · Hao Element Matrix" />
+  <meta
+    property="og:description"
+    content="探索 118 顆數位元素矩陣：首波點亮 C（碳）環境部碳足跡查詢系統與元素探勘區。"
+  />
+  <meta property="og:locale" content="zh_TW" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="晧脈元素庫 · Hao Element Matrix" />
+  <meta
+    name="twitter:description"
+    content="晧脈元素庫 · 個人數位作品與工具週期表矩陣，純靜態暗黑霓虹體驗。"
+  />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CSS (Play CDN) + Custom Neon Matrix Stylesheet -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <!-- 背景輕量級分子星網 Canvas -->
+  <canvas id="constellation-canvas" aria-hidden="true"></canvas>
+
+  <div class="app-shell">
+    <!-- 頂部品牌與即時搜尋列 -->
+    <header class="top-header">
+      <div class="brand-block">
+        <div class="brand-emblem" aria-hidden="true">
+          <svg viewBox="0 0 36 36" width="24" height="24" fill="none">
+            <polygon
+              points="18,3 31,10.5 31,25.5 18,33 5,25.5 5,10.5"
+              stroke="#00e676"
+              stroke-width="1.8"
+              fill="rgba(0,230,118,0.12)"
+            />
+            <circle cx="18" cy="18" r="4.2" fill="#38bdf8" />
+            <circle cx="18" cy="3" r="2.2" fill="#00e676" />
+            <circle cx="31" cy="25.5" r="2.2" fill="#b388ff" />
+            <circle cx="5" cy="25.5" r="2.2" fill="#ffd600" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">
+            <span>晧脈元素庫</span>
+            <span class="brand-title-en">HAO ELEMENT MATRIX</span>
+          </h1>
+          <p class="brand-subtitle">以 118 元素座標編織的數位工具與研究系統矩陣 · 點擊元素鎖定預覽</p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <div class="search-box" role="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" />
+            <path d="M20 20l-3.5-3.5" stroke-linecap="round" />
+          </svg>
+          <input
+            id="search-input"
+            class="search-input"
+            type="search"
+            placeholder="搜尋符號、原子序、系統、標籤或領域..."
+            aria-label="搜尋元素與系統"
+            autocomplete="off"
+          />
+          <button
+            id="search-clear-btn"
+            class="search-clear-btn"
+            type="button"
+            aria-label="清除搜尋"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div id="progress-badge" class="progress-badge" aria-live="polite">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span>已點亮 <strong id="lit-count">0</strong> / 118</span>
+        </div>
+
+        <button
+          id="header-view-toggle"
+          class="view-switch-pill"
+          type="button"
+          aria-pressed="false"
+        >
+          📋 清單視圖
+        </button>
+      </div>
+    </header>
+
+    <!-- 篩選狀態提示條 -->
+    <div id="filter-banner" class="filter-banner" role="status" aria-live="polite">
+      <span id="filter-banner-text"></span>
+      <button id="filter-reset-btn" class="filter-reset-btn" type="button">重置所有篩選</button>
+    </div>
+
+    <!-- 主舞台：週期表視圖 + 清單視圖 -->
+    <main class="matrix-stage">
+      <!-- 週期表視圖 -->
+      <section id="matrix-view" class="matrix-view" aria-label="晧脈元素週期表">
+        <div class="periodic-scroll-wrap">
+          <div id="periodic-grid" class="periodic-grid">
+            <!-- 上方凹槽放大版中央資訊卡（grid-column: 3 / 13; grid-row: 1 / 4） -->
+            <article
+              id="spotlight-card"
+              class="spotlight-card"
+              aria-live="polite"
+              aria-label="元素系統詳細資訊卡"
+            >
+              <!-- 左欄：放大全息元素磚 -->
+              <div class="holo-tile">
+                <div class="holo-top">
+                  <span id="spot-number" class="holo-number">#06</span>
+                  <button
+                    id="spot-lock-badge"
+                    class="lock-badge is-locked"
+                    type="button"
+                    title="點擊解除鎖定（或按 ESC）"
+                  >
+                    🔒 已鎖定 · ✕
+                  </button>
+                </div>
+                <div class="holo-center">
+                  <div id="spot-symbol" class="holo-symbol">C</div>
+                  <div id="spot-name-zh" class="holo-name-zh">碳</div>
+                  <div id="spot-name-en" class="holo-name-en">Carbon</div>
+                </div>
+                <div class="holo-bottom">
+                  <span id="spot-family-short">活性非金屬</span>
+                  <span id="spot-mass">12.011</span>
+                </div>
+              </div>
+
+              <!-- 中欄：系統介紹 -->
+              <div class="spot-body">
+                <div class="spot-header-row">
+                  <div id="spot-emblem" class="spot-emblem" aria-hidden="true"></div>
+                  <div class="spot-meta-stack">
+                    <div class="spot-badges">
+                      <span id="spot-status-pill" class="status-pill is-live">● LIVE 上線中</span>
+                      <span id="spot-sector-pill" class="sector-pill">碳足跡與永續系統</span>
+                    </div>
+                    <h2 id="spot-title" class="spot-title">環境部碳足跡查詢系統</h2>
+                    <div id="spot-subtitle" class="spot-subtitle">CFP Query Platform</div>
+                  </div>
+                </div>
+
+                <p id="spot-desc" class="spot-desc"></p>
+
+                <div class="spot-footer">
+                  <div id="spot-tags" class="spot-tags"></div>
+                  <span id="spot-domain" class="spot-domain"></span>
+                </div>
+              </div>
+
+              <!-- 右欄：三顆直向對齊發光按鈕 -->
+              <div class="spot-actions">
+                <a
+                  id="spot-launch-btn"
+                  class="action-btn action-btn-primary"
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  前往系統 ↗
+                </a>
+                <button
+                  id="spot-lit-only-btn"
+                  class="action-btn action-btn-secondary"
+                  type="button"
+                  aria-pressed="false"
+                >
+                  ✨ 只看已點亮
+                </button>
+                <button
+                  id="spot-list-view-btn"
+                  class="action-btn action-btn-secondary"
+                  type="button"
+                >
+                  📋 清單視圖
+                </button>
+              </div>
+            </article>
+
+            <!-- 左下角：10 色互動領域色環（SVG Donut） -->
+            <aside class="family-wheel-slot" aria-label="10 色領域篩選色環">
+              <div class="wheel-container">
+                <svg
+                  id="family-wheel-svg"
+                  class="wheel-svg"
+                  viewBox="0 0 120 120"
+                  role="img"
+                  aria-label="10 大元素領域互動色環"
+                ></svg>
+                <div class="wheel-legend">
+                  <span class="wheel-legend-kicker">SECTOR RING</span>
+                  <div id="wheel-legend-title" class="wheel-legend-title">全部領域</div>
+                  <div id="wheel-legend-sub" class="wheel-legend-sub">點擊色段篩選週期表</div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- 清單視圖（桌面可切換，手機 < 680px 自動啟用） -->
+      <section id="list-view" class="list-view" aria-label="元素與系統清單視圖">
+        <div class="list-section-title">
+          <span>✨ 已點亮系統（LIVE）</span>
+          <button id="list-back-matrix-btn" class="filter-reset-btn" type="button">
+            🧬 切換回週期表視圖
+          </button>
+        </div>
+        <div id="list-featured-grid" class="list-featured-grid"></div>
+
+        <div class="list-section-title">
+          <span id="list-dormant-heading">休眠元素一覽</span>
+        </div>
+        <div id="list-dormant-grid" class="list-dormant-grid"></div>
+      </section>
+
+      <!-- 元素探勘區 · MINING ZONE（週期表下方 32px 間距） -->
+      <section id="mining-zone" class="mining-zone" aria-label="元素探勘區">
+        <div class="mining-header">
+          <div>
+            <div class="mining-kicker">MINING ZONE · NEXT ILLUMINATIONS</div>
+            <h2 class="mining-title">
+              <span>⛏️ 元素探勘區</span>
+            </h2>
+            <p class="mining-subtitle">
+              正在深層開採與精煉中的下一批系統礦脈。敲礦集氣可累積期待能量，或啟動雷達隨機探勘休眠座標。
+            </p>
+          </div>
+
+          <button id="radar-scan-btn" class="radar-btn" type="button">
+            📡 雷達隨機探勘元素
+          </button>
+        </div>
+
+        <div id="mining-grid" class="mining-grid"></div>
+      </section>
+    </main>
+
+    <!-- 頁尾 -->
+    <footer class="site-footer">
+      <div>© 2026 晧脈元素庫 · Hao Element Matrix · Pure Static Edition</div>
+      <div>操作提示：點擊元素鎖定預覽 · 按 <kbd>ESC</kbd> 解除鎖定 · 點擊「前往系統 ↗」開啟目標服務</div>
+    </footer>
+  </div>
+
+  <!-- 鎖定期間跟隨滑鼠的輕量浮動提示條 -->
+  <div id="hover-pill" class="hover-pill" aria-hidden="true">
+    <span id="hover-pill-dot" class="hover-pill-dot"></span>
+    <strong id="hover-pill-main"></strong>
+    <span id="hover-pill-hint" class="hover-pill-hint"></span>
+  </div>
+
+  <!-- Toast 訊息容器 -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <script type="module" src="assets/app.js"></script>
+</body>
+</html>

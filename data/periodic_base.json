@@ -1,0 +1,1182 @@
+[
+  {
+    "number": 1,
+    "symbol": "H",
+    "nameEn": "Hydrogen",
+    "nameZh": "氫",
+    "mass": "1.008",
+    "col": 1,
+    "row": 1,
+    "family": "reactive-nonmetal"
+  },
+  {
+    "number": 2,
+    "symbol": "He",
+    "nameEn": "Helium",
+    "nameZh": "氦",
+    "mass": "4.0026",
+    "col": 18,
+    "row": 1,
+    "family": "noble-gas"
+  },
+  {
+    "number": 3,
+    "symbol": "Li",
+    "nameEn": "Lithium",
+    "nameZh": "鋰",
+    "mass": "6.94",
+    "col": 1,
+    "row": 2,
+    "family": "alkali-metal"
+  },
+  {
+    "number": 4,
+    "symbol": "Be",
+    "nameEn": "Beryllium",
+    "nameZh": "鈹",
+    "mass": "9.0122",
+    "col": 2,
+    "row": 2,
+    "family": "alkaline-earth"
+  },
+  {
+    "number": 5,
+    "symbol": "B",
+    "nameEn": "Boron",
+    "nameZh": "硼",
+    "mass": "10.81",
+    "col": 13,
+    "row": 2,
+    "family": "metalloid"
+  },
+  {
+    "number": 6,
+    "symbol": "C",
+    "nameEn": "Carbon",
+    "nameZh": "碳",
+    "mass": "12.011",
+    "col": 14,
+    "row": 2,
+    "family": "reactive-nonmetal"
+  },
+  {
+    "number": 7,
+    "symbol": "N",
+    "nameEn": "Nitrogen",
+    "nameZh": "氮",
+    "mass": "14.007",
+    "col": 15,
+    "row": 2,
+    "family": "reactive-nonmetal"
+  },
+  {
+    "number": 8,
+    "symbol": "O",
+    "nameEn": "Oxygen",
+    "nameZh": "氧",
+    "mass": "15.999",
+    "col": 16,
+    "row": 2,
+    "family": "reactive-nonmetal"
+  },
+  {
+    "number": 9,
+    "symbol": "F",
+    "nameEn": "Fluorine",
+    "nameZh": "氟",
+    "mass": "18.998",
+    "col": 17,
+    "row": 2,
+    "family": "halogen"
+  },
+  {
+    "number": 10,
+    "symbol": "Ne",
+    "nameEn": "Neon",
+    "nameZh": "氖",
+    "mass": "20.180",
+    "col": 18,
+    "row": 2,
+    "family": "noble-gas"
+  },
+  {
+    "number": 11,
+    "symbol": "Na",
+    "nameEn": "Sodium",
+    "nameZh": "鈉",
+    "mass": "22.990",
+    "col": 1,
+    "row": 3,
+    "family": "alkali-metal"
+  },
+  {
+    "number": 12,
+    "symbol": "Mg",
+    "nameEn": "Magnesium",
+    "nameZh": "鎂",
+    "mass": "24.305",
+    "col": 2,
+    "row": 3,
+    "family": "alkaline-earth"
+  },
+  {
+    "number": 13,
+    "symbol": "Al",
+    "nameEn": "Aluminium",
+    "nameZh": "鋁",
+    "mass": "26.982",
+    "col": 13,
+    "row": 3,
+    "family": "post-transition"
+  },
+  {
+    "number": 14,
+    "symbol": "Si",
+    "nameEn": "Silicon",
+    "nameZh": "矽",
+    "mass": "28.085",
+    "col": 14,
+    "row": 3,
+    "family": "metalloid"
+  },
+  {
+    "number": 15,
+    "symbol": "P",
+    "nameEn": "Phosphorus",
+    "nameZh": "磷",
+    "mass": "30.974",
+    "col": 15,
+    "row": 3,
+    "family": "reactive-nonmetal"
+  },
+  {
+    "number": 16,
+    "symbol": "S",
+    "nameEn": "Sulfur",
+    "nameZh": "硫",
+    "mass": "32.06",
+    "col": 16,
+    "row": 3,
+    "family": "reactive-nonmetal"
+  },
+  {
+    "number": 17,
+    "symbol": "Cl",
+    "nameEn": "Chlorine",
+    "nameZh": "氯",
+    "mass": "35.45",
+    "col": 17,
+    "row": 3,
+    "family": "halogen"
+  },
+  {
+    "number": 18,
+    "symbol": "Ar",
+    "nameEn": "Argon",
+    "nameZh": "氬",
+    "mass": "39.948",
+    "col": 18,
+    "row": 3,
+    "family": "noble-gas"
+  },
+  {
+    "number": 19,
+    "symbol": "K",
+    "nameEn": "Potassium",
+    "nameZh": "鉀",
+    "mass": "39.098",
+    "col": 1,
+    "row": 4,
+    "family": "alkali-metal"
+  },
+  {
+    "number": 20,
+    "symbol": "Ca",
+    "nameEn": "Calcium",
+    "nameZh": "鈣",
+    "mass": "40.078",
+    "col": 2,
+    "row": 4,
+    "family": "alkaline-earth"
+  },
+  {
+    "number": 21,
+    "symbol": "Sc",
+    "nameEn": "Scandium",
+    "nameZh": "鈧",
+    "mass": "44.956",
+    "col": 3,
+    "row": 4,
+    "family": "transition-metal"
+  },
+  {
+    "number": 22,
+    "symbol": "Ti",
+    "nameEn": "Titanium",
+    "nameZh": "鈦",
+    "mass": "47.867",
+    "col": 4,
+    "row": 4,
+    "family": "transition-metal"
+  },
+  {
+    "number": 23,
+    "symbol": "V",
+    "nameEn": "Vanadium",
+    "nameZh": "釩",
+    "mass": "50.942",
+    "col": 5,
+    "row": 4,
+    "family": "transition-metal"
+  },
+  {
+    "number": 24,
+    "symbol": "Cr",
+    "nameEn": "Chromium",
+    "nameZh": "鉻",
+    "mass": "51.996",
+    "col": 6,
+    "row": 4,
+    "family": "transition-metal"
+  },
+  {
+    "number": 25,
+    "symbol": "Mn",
+    "nameEn": "Manganese",
+    "nameZh": "錳",
+    "mass": "54.938",
+    "col": 7,
+    "row": 4,
+    "family": "transition-metal"
+  },
+  {
+    "number": 26,
+    "symbol": "Fe",
+    "nameEn": "Iron",
+    "nameZh": "鐵",
+    "mass": "55.845",
+    "col": 8,
+    "row": 4,
+    "family": "transition-metal"
+  },
+  {
+    "number": 27,
+    "symbol": "Co",
+    "nameEn": "Cobalt",
+    "nameZh": "鈷",
+    "mass": "58.933",
+    "col": 9,
+    "row": 4,
+    "family": "transition-metal"
+  },
+  {
+    "number": 28,
+    "symbol": "Ni",
+    "nameEn": "Nickel",
+    "nameZh": "鎳",
+    "mass": "58.693",
+    "col": 10,
+    "row": 4,
+    "family": "transition-metal"
+  },
+  {
+    "number": 29,
+    "symbol": "Cu",
+    "nameEn": "Copper",
+    "nameZh": "銅",
+    "mass": "63.546",
+    "col": 11,
+    "row": 4,
+    "family": "transition-metal"
+  },
+  {
+    "number": 30,
+    "symbol": "Zn",
+    "nameEn": "Zinc",
+    "nameZh": "鋅",
+    "mass": "65.38",
+    "col": 12,
+    "row": 4,
+    "family": "transition-metal"
+  },
+  {
+    "number": 31,
+    "symbol": "Ga",
+    "nameEn": "Gallium",
+    "nameZh": "鎵",
+    "mass": "69.723",
+    "col": 13,
+    "row": 4,
+    "family": "post-transition"
+  },
+  {
+    "number": 32,
+    "symbol": "Ge",
+    "nameEn": "Germanium",
+    "nameZh": "鍺",
+    "mass": "72.630",
+    "col": 14,
+    "row": 4,
+    "family": "metalloid"
+  },
+  {
+    "number": 33,
+    "symbol": "As",
+    "nameEn": "Arsenic",
+    "nameZh": "砷",
+    "mass": "74.922",
+    "col": 15,
+    "row": 4,
+    "family": "metalloid"
+  },
+  {
+    "number": 34,
+    "symbol": "Se",
+    "nameEn": "Selenium",
+    "nameZh": "硒",
+    "mass": "78.971",
+    "col": 16,
+    "row": 4,
+    "family": "reactive-nonmetal"
+  },
+  {
+    "number": 35,
+    "symbol": "Br",
+    "nameEn": "Bromine",
+    "nameZh": "溴",
+    "mass": "79.904",
+    "col": 17,
+    "row": 4,
+    "family": "halogen"
+  },
+  {
+    "number": 36,
+    "symbol": "Kr",
+    "nameEn": "Krypton",
+    "nameZh": "氪",
+    "mass": "83.798",
+    "col": 18,
+    "row": 4,
+    "family": "noble-gas"
+  },
+  {
+    "number": 37,
+    "symbol": "Rb",
+    "nameEn": "Rubidium",
+    "nameZh": "銣",
+    "mass": "85.468",
+    "col": 1,
+    "row": 5,
+    "family": "alkali-metal"
+  },
+  {
+    "number": 38,
+    "symbol": "Sr",
+    "nameEn": "Strontium",
+    "nameZh": "鍶",
+    "mass": "87.62",
+    "col": 2,
+    "row": 5,
+    "family": "alkaline-earth"
+  },
+  {
+    "number": 39,
+    "symbol": "Y",
+    "nameEn": "Yttrium",
+    "nameZh": "釔",
+    "mass": "88.906",
+    "col": 3,
+    "row": 5,
+    "family": "transition-metal"
+  },
+  {
+    "number": 40,
+    "symbol": "Zr",
+    "nameEn": "Zirconium",
+    "nameZh": "鋯",
+    "mass": "91.224",
+    "col": 4,
+    "row": 5,
+    "family": "transition-metal"
+  },
+  {
+    "number": 41,
+    "symbol": "Nb",
+    "nameEn": "Niobium",
+    "nameZh": "鈮",
+    "mass": "92.906",
+    "col": 5,
+    "row": 5,
+    "family": "transition-metal"
+  },
+  {
+    "number": 42,
+    "symbol": "Mo",
+    "nameEn": "Molybdenum",
+    "nameZh": "鉬",
+    "mass": "95.95",
+    "col": 6,
+    "row": 5,
+    "family": "transition-metal"
+  },
+  {
+    "number": 43,
+    "symbol": "Tc",
+    "nameEn": "Technetium",
+    "nameZh": "鎝",
+    "mass": "[98]",
+    "col": 7,
+    "row": 5,
+    "family": "transition-metal"
+  },
+  {
+    "number": 44,
+    "symbol": "Ru",
+    "nameEn": "Ruthenium",
+    "nameZh": "釕",
+    "mass": "101.07",
+    "col": 8,
+    "row": 5,
+    "family": "transition-metal"
+  },
+  {
+    "number": 45,
+    "symbol": "Rh",
+    "nameEn": "Rhodium",
+    "nameZh": "銠",
+    "mass": "102.91",
+    "col": 9,
+    "row": 5,
+    "family": "transition-metal"
+  },
+  {
+    "number": 46,
+    "symbol": "Pd",
+    "nameEn": "Palladium",
+    "nameZh": "鈀",
+    "mass": "106.42",
+    "col": 10,
+    "row": 5,
+    "family": "transition-metal"
+  },
+  {
+    "number": 47,
+    "symbol": "Ag",
+    "nameEn": "Silver",
+    "nameZh": "銀",
+    "mass": "107.87",
+    "col": 11,
+    "row": 5,
+    "family": "transition-metal"
+  },
+  {
+    "number": 48,
+    "symbol": "Cd",
+    "nameEn": "Cadmium",
+    "nameZh": "鎘",
+    "mass": "112.41",
+    "col": 12,
+    "row": 5,
+    "family": "transition-metal"
+  },
+  {
+    "number": 49,
+    "symbol": "In",
+    "nameEn": "Indium",
+    "nameZh": "銦",
+    "mass": "114.82",
+    "col": 13,
+    "row": 5,
+    "family": "post-transition"
+  },
+  {
+    "number": 50,
+    "symbol": "Sn",
+    "nameEn": "Tin",
+    "nameZh": "錫",
+    "mass": "118.71",
+    "col": 14,
+    "row": 5,
+    "family": "post-transition"
+  },
+  {
+    "number": 51,
+    "symbol": "Sb",
+    "nameEn": "Antimony",
+    "nameZh": "銻",
+    "mass": "121.76",
+    "col": 15,
+    "row": 5,
+    "family": "metalloid"
+  },
+  {
+    "number": 52,
+    "symbol": "Te",
+    "nameEn": "Tellurium",
+    "nameZh": "碲",
+    "mass": "127.60",
+    "col": 16,
+    "row": 5,
+    "family": "metalloid"
+  },
+  {
+    "number": 53,
+    "symbol": "I",
+    "nameEn": "Iodine",
+    "nameZh": "碘",
+    "mass": "126.90",
+    "col": 17,
+    "row": 5,
+    "family": "halogen"
+  },
+  {
+    "number": 54,
+    "symbol": "Xe",
+    "nameEn": "Xenon",
+    "nameZh": "氙",
+    "mass": "131.29",
+    "col": 18,
+    "row": 5,
+    "family": "noble-gas"
+  },
+  {
+    "number": 55,
+    "symbol": "Cs",
+    "nameEn": "Cesium",
+    "nameZh": "銫",
+    "mass": "132.91",
+    "col": 1,
+    "row": 6,
+    "family": "alkali-metal"
+  },
+  {
+    "number": 56,
+    "symbol": "Ba",
+    "nameEn": "Barium",
+    "nameZh": "鋇",
+    "mass": "137.33",
+    "col": 2,
+    "row": 6,
+    "family": "alkaline-earth"
+  },
+  {
+    "number": 57,
+    "symbol": "La",
+    "nameEn": "Lanthanum",
+    "nameZh": "鑭",
+    "mass": "138.91",
+    "col": 4,
+    "row": 9,
+    "family": "lanthanide"
+  },
+  {
+    "number": 58,
+    "symbol": "Ce",
+    "nameEn": "Cerium",
+    "nameZh": "鈰",
+    "mass": "140.12",
+    "col": 5,
+    "row": 9,
+    "family": "lanthanide"
+  },
+  {
+    "number": 59,
+    "symbol": "Pr",
+    "nameEn": "Praseodymium",
+    "nameZh": "鐠",
+    "mass": "140.91",
+    "col": 6,
+    "row": 9,
+    "family": "lanthanide"
+  },
+  {
+    "number": 60,
+    "symbol": "Nd",
+    "nameEn": "Neodymium",
+    "nameZh": "釹",
+    "mass": "144.24",
+    "col": 7,
+    "row": 9,
+    "family": "lanthanide"
+  },
+  {
+    "number": 61,
+    "symbol": "Pm",
+    "nameEn": "Promethium",
+    "nameZh": "鉕",
+    "mass": "[145]",
+    "col": 8,
+    "row": 9,
+    "family": "lanthanide"
+  },
+  {
+    "number": 62,
+    "symbol": "Sm",
+    "nameEn": "Samarium",
+    "nameZh": "釤",
+    "mass": "150.36",
+    "col": 9,
+    "row": 9,
+    "family": "lanthanide"
+  },
+  {
+    "number": 63,
+    "symbol": "Eu",
+    "nameEn": "Europium",
+    "nameZh": "銪",
+    "mass": "151.96",
+    "col": 10,
+    "row": 9,
+    "family": "lanthanide"
+  },
+  {
+    "number": 64,
+    "symbol": "Gd",
+    "nameEn": "Gadolinium",
+    "nameZh": "釓",
+    "mass": "157.25",
+    "col": 11,
+    "row": 9,
+    "family": "lanthanide"
+  },
+  {
+    "number": 65,
+    "symbol": "Tb",
+    "nameEn": "Terbium",
+    "nameZh": "鋱",
+    "mass": "158.93",
+    "col": 12,
+    "row": 9,
+    "family": "lanthanide"
+  },
+  {
+    "number": 66,
+    "symbol": "Dy",
+    "nameEn": "Dysprosium",
+    "nameZh": "鏑",
+    "mass": "162.50",
+    "col": 13,
+    "row": 9,
+    "family": "lanthanide"
+  },
+  {
+    "number": 67,
+    "symbol": "Ho",
+    "nameEn": "Holmium",
+    "nameZh": "鈥",
+    "mass": "164.93",
+    "col": 14,
+    "row": 9,
+    "family": "lanthanide"
+  },
+  {
+    "number": 68,
+    "symbol": "Er",
+    "nameEn": "Erbium",
+    "nameZh": "鉺",
+    "mass": "167.26",
+    "col": 15,
+    "row": 9,
+    "family": "lanthanide"
+  },
+  {
+    "number": 69,
+    "symbol": "Tm",
+    "nameEn": "Thulium",
+    "nameZh": "銩",
+    "mass": "168.93",
+    "col": 16,
+    "row": 9,
+    "family": "lanthanide"
+  },
+  {
+    "number": 70,
+    "symbol": "Yb",
+    "nameEn": "Ytterbium",
+    "nameZh": "鐿",
+    "mass": "173.05",
+    "col": 17,
+    "row": 9,
+    "family": "lanthanide"
+  },
+  {
+    "number": 71,
+    "symbol": "Lu",
+    "nameEn": "Lutetium",
+    "nameZh": "鎦",
+    "mass": "174.97",
+    "col": 18,
+    "row": 9,
+    "family": "lanthanide"
+  },
+  {
+    "number": 72,
+    "symbol": "Hf",
+    "nameEn": "Hafnium",
+    "nameZh": "鉿",
+    "mass": "178.49",
+    "col": 4,
+    "row": 6,
+    "family": "transition-metal"
+  },
+  {
+    "number": 73,
+    "symbol": "Ta",
+    "nameEn": "Tantalum",
+    "nameZh": "鉭",
+    "mass": "180.95",
+    "col": 5,
+    "row": 6,
+    "family": "transition-metal"
+  },
+  {
+    "number": 74,
+    "symbol": "W",
+    "nameEn": "Tungsten",
+    "nameZh": "鎢",
+    "mass": "183.84",
+    "col": 6,
+    "row": 6,
+    "family": "transition-metal"
+  },
+  {
+    "number": 75,
+    "symbol": "Re",
+    "nameEn": "Rhenium",
+    "nameZh": "錸",
+    "mass": "186.21",
+    "col": 7,
+    "row": 6,
+    "family": "transition-metal"
+  },
+  {
+    "number": 76,
+    "symbol": "Os",
+    "nameEn": "Osmium",
+    "nameZh": "鋨",
+    "mass": "190.23",
+    "col": 8,
+    "row": 6,
+    "family": "transition-metal"
+  },
+  {
+    "number": 77,
+    "symbol": "Ir",
+    "nameEn": "Iridium",
+    "nameZh": "銥",
+    "mass": "192.22",
+    "col": 9,
+    "row": 6,
+    "family": "transition-metal"
+  },
+  {
+    "number": 78,
+    "symbol": "Pt",
+    "nameEn": "Platinum",
+    "nameZh": "鉑",
+    "mass": "195.08",
+    "col": 10,
+    "row": 6,
+    "family": "transition-metal"
+  },
+  {
+    "number": 79,
+    "symbol": "Au",
+    "nameEn": "Gold",
+    "nameZh": "金",
+    "mass": "196.97",
+    "col": 11,
+    "row": 6,
+    "family": "transition-metal"
+  },
+  {
+    "number": 80,
+    "symbol": "Hg",
+    "nameEn": "Mercury",
+    "nameZh": "汞",
+    "mass": "200.59",
+    "col": 12,
+    "row": 6,
+    "family": "transition-metal"
+  },
+  {
+    "number": 81,
+    "symbol": "Tl",
+    "nameEn": "Thallium",
+    "nameZh": "鉈",
+    "mass": "204.38",
+    "col": 13,
+    "row": 6,
+    "family": "post-transition"
+  },
+  {
+    "number": 82,
+    "symbol": "Pb",
+    "nameEn": "Lead",
+    "nameZh": "鉛",
+    "mass": "207.2",
+    "col": 14,
+    "row": 6,
+    "family": "post-transition"
+  },
+  {
+    "number": 83,
+    "symbol": "Bi",
+    "nameEn": "Bismuth",
+    "nameZh": "鉍",
+    "mass": "208.98",
+    "col": 15,
+    "row": 6,
+    "family": "post-transition"
+  },
+  {
+    "number": 84,
+    "symbol": "Po",
+    "nameEn": "Polonium",
+    "nameZh": "釙",
+    "mass": "[209]",
+    "col": 16,
+    "row": 6,
+    "family": "post-transition"
+  },
+  {
+    "number": 85,
+    "symbol": "At",
+    "nameEn": "Astatine",
+    "nameZh": "砈",
+    "mass": "[210]",
+    "col": 17,
+    "row": 6,
+    "family": "halogen"
+  },
+  {
+    "number": 86,
+    "symbol": "Rn",
+    "nameEn": "Radon",
+    "nameZh": "氡",
+    "mass": "[222]",
+    "col": 18,
+    "row": 6,
+    "family": "noble-gas"
+  },
+  {
+    "number": 87,
+    "symbol": "Fr",
+    "nameEn": "Francium",
+    "nameZh": "鍅",
+    "mass": "[223]",
+    "col": 1,
+    "row": 7,
+    "family": "alkali-metal"
+  },
+  {
+    "number": 88,
+    "symbol": "Ra",
+    "nameEn": "Radium",
+    "nameZh": "鐳",
+    "mass": "[226]",
+    "col": 2,
+    "row": 7,
+    "family": "alkaline-earth"
+  },
+  {
+    "number": 89,
+    "symbol": "Ac",
+    "nameEn": "Actinium",
+    "nameZh": "錒",
+    "mass": "[227]",
+    "col": 4,
+    "row": 10,
+    "family": "actinide"
+  },
+  {
+    "number": 90,
+    "symbol": "Th",
+    "nameEn": "Thorium",
+    "nameZh": "釷",
+    "mass": "232.04",
+    "col": 5,
+    "row": 10,
+    "family": "actinide"
+  },
+  {
+    "number": 91,
+    "symbol": "Pa",
+    "nameEn": "Protactinium",
+    "nameZh": "鏷",
+    "mass": "231.04",
+    "col": 6,
+    "row": 10,
+    "family": "actinide"
+  },
+  {
+    "number": 92,
+    "symbol": "U",
+    "nameEn": "Uranium",
+    "nameZh": "鈾",
+    "mass": "238.03",
+    "col": 7,
+    "row": 10,
+    "family": "actinide"
+  },
+  {
+    "number": 93,
+    "symbol": "Np",
+    "nameEn": "Neptunium",
+    "nameZh": "錼",
+    "mass": "[237]",
+    "col": 8,
+    "row": 10,
+    "family": "actinide"
+  },
+  {
+    "number": 94,
+    "symbol": "Pu",
+    "nameEn": "Plutonium",
+    "nameZh": "鈽",
+    "mass": "[244]",
+    "col": 9,
+    "row": 10,
+    "family": "actinide"
+  },
+  {
+    "number": 95,
+    "symbol": "Am",
+    "nameEn": "Americium",
+    "nameZh": "鋂",
+    "mass": "[243]",
+    "col": 10,
+    "row": 10,
+    "family": "actinide"
+  },
+  {
+    "number": 96,
+    "symbol": "Cm",
+    "nameEn": "Curium",
+    "nameZh": "鋦",
+    "mass": "[247]",
+    "col": 11,
+    "row": 10,
+    "family": "actinide"
+  },
+  {
+    "number": 97,
+    "symbol": "Bk",
+    "nameEn": "Berkelium",
+    "nameZh": "鉳",
+    "mass": "[247]",
+    "col": 12,
+    "row": 10,
+    "family": "actinide"
+  },
+  {
+    "number": 98,
+    "symbol": "Cf",
+    "nameEn": "Californium",
+    "nameZh": "鉲",
+    "mass": "[251]",
+    "col": 13,
+    "row": 10,
+    "family": "actinide"
+  },
+  {
+    "number": 99,
+    "symbol": "Es",
+    "nameEn": "Einsteinium",
+    "nameZh": "鑀",
+    "mass": "[252]",
+    "col": 14,
+    "row": 10,
+    "family": "actinide"
+  },
+  {
+    "number": 100,
+    "symbol": "Fm",
+    "nameEn": "Fermium",
+    "nameZh": "鐨",
+    "mass": "[257]",
+    "col": 15,
+    "row": 10,
+    "family": "actinide"
+  },
+  {
+    "number": 101,
+    "symbol": "Md",
+    "nameEn": "Mendelevium",
+    "nameZh": "鍆",
+    "mass": "[258]",
+    "col": 16,
+    "row": 10,
+    "family": "actinide"
+  },
+  {
+    "number": 102,
+    "symbol": "No",
+    "nameEn": "Nobelium",
+    "nameZh": "鍩",
+    "mass": "[259]",
+    "col": 17,
+    "row": 10,
+    "family": "actinide"
+  },
+  {
+    "number": 103,
+    "symbol": "Lr",
+    "nameEn": "Lawrencium",
+    "nameZh": "鐒",
+    "mass": "[266]",
+    "col": 18,
+    "row": 10,
+    "family": "actinide"
+  },
+  {
+    "number": 104,
+    "symbol": "Rf",
+    "nameEn": "Rutherfordium",
+    "nameZh": "鑪",
+    "mass": "[267]",
+    "col": 4,
+    "row": 7,
+    "family": "transition-metal"
+  },
+  {
+    "number": 105,
+    "symbol": "Db",
+    "nameEn": "Dubnium",
+    "nameZh": "𨧀",
+    "mass": "[268]",
+    "col": 5,
+    "row": 7,
+    "family": "transition-metal"
+  },
+  {
+    "number": 106,
+    "symbol": "Sg",
+    "nameEn": "Seaborgium",
+    "nameZh": "𨭎",
+    "mass": "[269]",
+    "col": 6,
+    "row": 7,
+    "family": "transition-metal"
+  },
+  {
+    "number": 107,
+    "symbol": "Bh",
+    "nameEn": "Bohrium",
+    "nameZh": "𨨏",
+    "mass": "[270]",
+    "col": 7,
+    "row": 7,
+    "family": "transition-metal"
+  },
+  {
+    "number": 108,
+    "symbol": "Hs",
+    "nameEn": "Hassium",
+    "nameZh": "𨭆",
+    "mass": "[277]",
+    "col": 8,
+    "row": 7,
+    "family": "transition-metal"
+  },
+  {
+    "number": 109,
+    "symbol": "Mt",
+    "nameEn": "Meitnerium",
+    "nameZh": "䥑",
+    "mass": "[278]",
+    "col": 9,
+    "row": 7,
+    "family": "transition-metal"
+  },
+  {
+    "number": 110,
+    "symbol": "Ds",
+    "nameEn": "Darmstadtium",
+    "nameZh": "鐽",
+    "mass": "[281]",
+    "col": 10,
+    "row": 7,
+    "family": "transition-metal"
+  },
+  {
+    "number": 111,
+    "symbol": "Rg",
+    "nameEn": "Roentgenium",
+    "nameZh": "錀",
+    "mass": "[282]",
+    "col": 11,
+    "row": 7,
+    "family": "transition-metal"
+  },
+  {
+    "number": 112,
+    "symbol": "Cn",
+    "nameEn": "Copernicium",
+    "nameZh": "鎶",
+    "mass": "[285]",
+    "col": 12,
+    "row": 7,
+    "family": "transition-metal"
+  },
+  {
+    "number": 113,
+    "symbol": "Nh",
+    "nameEn": "Nihonium",
+    "nameZh": "鉨",
+    "mass": "[286]",
+    "col": 13,
+    "row": 7,
+    "family": "post-transition"
+  },
+  {
+    "number": 114,
+    "symbol": "Fl",
+    "nameEn": "Flerovium",
+    "nameZh": "鈇",
+    "mass": "[289]",
+    "col": 14,
+    "row": 7,
+    "family": "post-transition"
+  },
+  {
+    "number": 115,
+    "symbol": "Mc",
+    "nameEn": "Moscovium",
+    "nameZh": "鏌",
+    "mass": "[290]",
+    "col": 15,
+    "row": 7,
+    "family": "post-transition"
+  },
+  {
+    "number": 116,
+    "symbol": "Lv",
+    "nameEn": "Livermorium",
+    "nameZh": "鉝",
+    "mass": "[293]",
+    "col": 16,
+    "row": 7,
+    "family": "post-transition"
+  },
+  {
+    "number": 117,
+    "symbol": "Ts",
+    "nameEn": "Tennessine",
+    "nameZh": "鿬",
+    "mass": "[294]",
+    "col": 17,
+    "row": 7,
+    "family": "halogen"
+  },
+  {
+    "number": 118,
+    "symbol": "Og",
+    "nameEn": "Oganesson",
+    "nameZh": "鿫",
+    "mass": "[294]",
+    "col": 18,
+    "row": 7,
+    "family": "noble-gas"
+  }
+]
