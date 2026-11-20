@@ -21,5 +21,17 @@
     "statusLabel": "LIVE 上線中",
     "tags": ["環境政策", "法規時間軸", "政策關聯地圖"],
     "emblemType": "oxygen"
+  },
+  "Ti": {
+    "shortName": "航程碳排",
+    "title": "ICAO 航空碳排放計算系統",
+    "subtitle": "ICAO Aviation Carbon Calculator",
+    "description": "依循 ICAO 國際民航組織方法學，估算全球航線大圓距離、艙等係數與商務差旅航空碳足跡，支援組織盤查與差旅減碳分析。",
+    "url": "https://icao-carbon-v2.pages.dev/",
+    "domainLabel": "icao-carbon-v2.pages.dev",
+    "status": "live",
+    "statusLabel": "LIVE 上線中",
+    "tags": ["ICAO 方法學", "航空碳足跡", "商務差旅盤查"],
+    "emblemType": "titanium"
   }
 }

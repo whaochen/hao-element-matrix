@@ -249,6 +249,31 @@ function buildEmblemSvg(emblemType, color) {
     `;
   }
 
+  if (emblemType === 'titanium') {
+    const tiBlue = '#40c4ff';
+    const tiSilver = '#e2e8f0';
+    return `
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <g class="emblem-orbit">
+          <circle cx="24" cy="24" r="18" stroke="${tiBlue}" stroke-width="1.4" stroke-dasharray="6 4" stroke-opacity="0.82" />
+          <circle cx="24" cy="6" r="2.2" fill="${tiSilver}" />
+          <circle cx="42" cy="24" r="2.2" fill="${tiBlue}" />
+        </g>
+        <g class="emblem-orbit-rev">
+          <ellipse cx="24" cy="24" rx="16" ry="7" transform="rotate(-35 24 24)" stroke="${tiSilver}" stroke-width="1.2" stroke-opacity="0.6" />
+        </g>
+        <path
+          d="M24 12 L27.5 22 L36 25.5 L27.5 27.5 L26 35 L24 32 L22 35 L20.5 27.5 L12 25.5 L20.5 22 Z"
+          fill="rgba(64, 196, 255, 0.22)"
+          stroke="${tiBlue}"
+          stroke-width="1.5"
+          stroke-linejoin="round"
+        />
+        <circle cx="24" cy="24" r="2.1" fill="${tiSilver}" />
+      </svg>
+    `;
+  }
+
   return `
     <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
       <g class="emblem-orbit">
