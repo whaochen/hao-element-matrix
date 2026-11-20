@@ -801,6 +801,13 @@ body {
   text-shadow: 0 0 12px color-mix(in srgb, var(--el-color) 75%, transparent);
 }
 
+.el-tile.is-lit .el-zh {
+  color: #f1f5f9;
+  font-weight: 600;
+  font-size: 0.6rem;
+  letter-spacing: -0.02em;
+}
+
 .el-tile.is-lit:hover {
   transform: translateY(-3px) scale(1.09);
   z-index: 7;
@@ -1221,7 +1228,7 @@ body {
 
 .mining-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 16px;
 }
 

@@ -224,6 +224,31 @@ function buildEmblemSvg(emblemType, color) {
     `;
   }
 
+  if (emblemType === 'oxygen') {
+    const techBlue = '#38bdf8';
+    const techCyan = '#00e5ff';
+    const techLight = '#bae6fd';
+    return `
+      <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <g class="emblem-orbit">
+          <ellipse cx="24" cy="24" rx="19" ry="8.5" transform="rotate(-24 24 24)" stroke="${techBlue}" stroke-width="1.5" stroke-opacity="0.88" />
+          <circle cx="41.5" cy="16.4" r="2.2" fill="${techCyan}" />
+          <circle cx="6.5" cy="31.6" r="2.0" fill="${techLight}" />
+        </g>
+        <g class="emblem-orbit-rev">
+          <ellipse cx="24" cy="24" rx="19" ry="8.5" transform="rotate(24 24 24)" stroke="${techCyan}" stroke-width="1.35" stroke-dasharray="3 2.5" stroke-opacity="0.72" />
+          <circle cx="41.5" cy="31.6" r="2.0" fill="${techBlue}" />
+        </g>
+        <line x1="17" y1="22.1" x2="31" y2="22.1" stroke="${techCyan}" stroke-width="1.8" stroke-linecap="round" />
+        <line x1="17" y1="25.9" x2="31" y2="25.9" stroke="${techBlue}" stroke-width="1.8" stroke-linecap="round" />
+        <circle cx="17" cy="24" r="5.2" fill="rgba(56, 189, 248, 0.24)" stroke="${techCyan}" stroke-width="1.6" />
+        <circle cx="17" cy="24" r="2.2" fill="${techLight}" />
+        <circle cx="31" cy="24" r="5.2" fill="rgba(56, 189, 248, 0.24)" stroke="${techBlue}" stroke-width="1.6" />
+        <circle cx="31" cy="24" r="2.2" fill="${techLight}" />
+      </svg>
+    `;
+  }
+
   return `
     <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
       <g class="emblem-orbit">
@@ -339,7 +364,9 @@ function renderPeriodicGrid() {
 
   for (const el of state.elements) {
     const family = getFamilyInfo(el.family);
-    const isLit = Boolean(state.projects[el.symbol]);
+    const project = state.projects[el.symbol] || null;
+    const isLit = Boolean(project);
+    const bottomLabel = project?.shortName || el.nameZh;
 
     const btn = document.createElement('button');
     btn.type = 'button';
@@ -351,7 +378,7 @@ function renderPeriodicGrid() {
     btn.style.setProperty('--el-color', family.color);
     btn.setAttribute(
       'aria-label',
-      `${el.number} 號元素 ${el.nameZh} ${el.symbol}${isLit ? `，已點亮：${state.projects[el.symbol].title}` : '，休眠中'}`
+      `${el.number} 號元素 ${el.nameZh} ${el.symbol}${isLit ? `，已點亮：${project.title}` : '，休眠中'}`
     );
 
     btn.innerHTML = `
@@ -360,7 +387,7 @@ function renderPeriodicGrid() {
         ${isLit ? '<span class="el-live-indicator" title="LIVE 上線中"></span>' : ''}
       </div>
       <div class="el-symbol">${el.symbol}</div>
-      <div class="el-zh">${el.nameZh}</div>
+      <div class="el-zh">${escapeHtml(bottomLabel)}</div>
     `;
 
     btn.addEventListener('click', () => handleTileClick(el.symbol));

@@ -9,5 +9,17 @@
     "statusLabel": "LIVE 上線中",
     "tags": ["ISO 14067", "碳足跡係數", "環境部開放資料"],
     "emblemType": "carbon"
+  },
+  "O": {
+    "shortName": "環策晧脈",
+    "title": "環策晧脈 · 環境政策觀測站",
+    "subtitle": "Taiwan Environment Observatory",
+    "description": "追蹤 25 年環境部新聞與法規演進，整合 20 大政策版圖關聯地圖、時間軸與研究級數據下載的環境政策智庫。",
+    "url": "https://moenv-policy-pulse.pages.dev/",
+    "domainLabel": "moenv-policy-pulse.pages.dev",
+    "status": "live",
+    "statusLabel": "LIVE 上線中",
+    "tags": ["環境政策", "法規時間軸", "政策關聯地圖"],
+    "emblemType": "oxygen"
   }
 }
