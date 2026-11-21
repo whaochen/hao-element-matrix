@@ -49,5 +49,18 @@
     "statusLabel": "BETA 測試中",
     "tags": ["軌道碳排", "範疇三差旅", "MRV引用"],
     "emblemType": "default"
+  },
+  "Zn": {
+    "shortName": "海運碳排",
+    "title": "全球海運航線與碳排計算箱",
+    "subtitle": "Sea Route Carbon Box",
+    "description": "純前端全球海運最短航線與碳排估算工具，整合 Eurostat 路網、運河改道切換與 ISO 14064-1 查證佐證圖匯出。",
+    "whyElement": "遠洋船舶常焊裝「犧牲陽極鋅塊」防海水腐蝕，以 Zn 象徵海運航線守護。",
+    "url": "https://sea-route-carbon.pages.dev/",
+    "domainLabel": "sea-route-carbon.pages.dev",
+    "status": "live",
+    "statusLabel": "LIVE 上線中",
+    "tags": ["海運距離", "類別三盤查", "航線佐證"],
+    "emblemType": "default"
   }
 }
