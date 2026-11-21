@@ -172,6 +172,32 @@ def check_dom_ids() -> tuple[bool, list[str]]:
     return True, [f"DOM ID 一致性檢核通過：assets/app.js 查詢的 {len(js_ids)} 個 ID 皆存在於 index.html。"]
 
 
+def check_badge_component() -> tuple[bool, list[str]]:
+    badge_path = ROOT / "badge.js"
+    base_path = ROOT / "data" / "periodic_base.json"
+    if not badge_path.exists():
+        return False, ["找不到根目錄 badge.js"]
+
+    text = badge_path.read_text(encoding="utf-8")
+    errors: list[str] = []
+    if "customElements.define(TAG_NAME" not in text or "'hao-element-badge'" not in text:
+        errors.append("badge.js 未註冊 <hao-element-badge> 自訂標籤")
+    if "attachShadow" not in text:
+        errors.append("badge.js 未使用 Shadow DOM")
+
+    raw_parts = re.findall(r"'([^']*)'\s*(?:\+|;)", text.split("const RAW_ELEMENTS =", 1)[-1].split(";", 1)[0] + ";")
+    tokens = " ".join(raw_parts).split()
+    base = json.loads(base_path.read_text(encoding="utf-8"))
+    expected = [f"{e['symbol']}:{e['nameZh']}" for e in sorted(base, key=lambda x: x["number"])]
+    actual = [":".join(t.split(":")[:2]) for t in tokens]
+    if actual != expected:
+        errors.append(f"badge.js 元素表與 periodic_base.json 不一致（badge.js 共 {len(actual)} 筆）")
+
+    if errors:
+        return False, errors
+    return True, [f"badge.js 驗證通過：已註冊 <hao-element-badge>（Shadow DOM），內建 {len(actual)} 個元素與底圖完全一致。"]
+
+
 def main() -> int:
     print("=== 晧脈元素庫 · Hao Element Matrix 自動化檢核 ===")
     all_ok = True
@@ -205,6 +231,12 @@ def main() -> int:
     for m in msgs5:
         print(f"       {m}")
     all_ok = all_ok and ok5
+
+    ok6, msgs6 = check_badge_component()
+    print(f"[{'PASS' if ok6 else 'FAIL'}] 6. badge.js 回航徽章檢核")
+    for m in msgs6:
+        print(f"       {m}")
+    all_ok = all_ok and ok6
 
     print("=" * 48)
     if all_ok:

@@ -67,6 +67,23 @@ python -m http.server 8080
    ```
    Cloudflare Pages 將在數十秒內自動完成重新發布。
 
+## 回航徽章 Web Component（badge.js）
+
+任何子系統只要兩行即可嵌入連回主站的回航徽章（純原生、零依賴、Shadow DOM 樣式隔離）：
+
+```html
+<script src="https://hao-element-matrix.pages.dev/badge.js" defer></script>
+<hao-element-badge symbol="O" theme="dark" compact="false"></hao-element-badge>
+```
+
+| 屬性 | 說明 |
+| :--- | :--- |
+| `symbol` | 元素符號（如 `C` / `O` / `Ti`），內建完整 118 元素中文名與主題色 |
+| `theme` | `dark`（深色底，預設）或 `light`（淺色底） |
+| `compact` | `true` 時僅顯示迷你 3D 元素方塊與 `↗` |
+
+點擊後開新分頁前往 `https://hao-element-matrix.pages.dev/?el={symbol}`，主站會自動鎖定該元素於上方資訊卡。
+
 ## Cloudflare Pages 部署設定
 
 - **Framework preset**：None

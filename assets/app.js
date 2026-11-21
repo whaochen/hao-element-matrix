@@ -1073,6 +1073,23 @@ function bindEvents() {
   mq.addEventListener('change', applyResponsiveView);
 }
 
+/**
+ * 讀取網址參數 ?el=...，若為合法元素符號（大小寫不敏感）則回傳標準符號，否則回傳 null
+ */
+function resolveUrlElementSymbol() {
+  try {
+    const raw = new URLSearchParams(window.location.search).get('el');
+    if (!raw) return null;
+    const query = raw.trim();
+    if (state.elementsBySymbol.has(query)) return query;
+    const lower = query.toLowerCase();
+    const match = state.elements.find((el) => el.symbol.toLowerCase() === lower);
+    return match ? match.symbol : null;
+  } catch {
+    return null;
+  }
+}
+
 async function init() {
   cacheDom();
   initConstellation('constellation-canvas');
@@ -1098,8 +1115,9 @@ async function init() {
     const litSymbols = Object.keys(state.projects).filter((s) => state.elementsBySymbol.has(s));
     dom.litCount.textContent = String(litSymbols.length);
 
-    // 預設鎖定 C（碳）
-    const defaultSym = state.projects.C ? 'C' : litSymbols[0] || 'C';
+    // 網址參數 ?el=... 優先鎖定指定元素，否則預設鎖定 C（碳）
+    const urlSym = resolveUrlElementSymbol();
+    const defaultSym = urlSym || (state.projects.C ? 'C' : litSymbols[0] || 'C');
     state.lockedSymbol = defaultSym;
     state.activeSymbol = defaultSym;
 
@@ -1108,6 +1126,14 @@ async function init() {
     renderSpotlight();
     renderMiningZone();
     bindEvents();
+
+    // 由回航徽章帶入指定元素時：切回週期表視圖並捲動至資訊卡
+    if (urlSym) {
+      if (state.viewMode !== 'matrix') setViewMode('matrix', true);
+      window.requestAnimationFrame(() => {
+        dom.spotlightCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
   } catch (err) {
     console.error('[Hao Element Matrix] 初始化錯誤：', err);
     showToast('⚠️ 無法載入元素資料，請確認以靜態伺服器開啟頁面。', 5000);
