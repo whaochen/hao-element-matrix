@@ -62,5 +62,18 @@
     "statusLabel": "LIVE 上線中",
     "tags": ["海運距離", "類別三盤查", "航線佐證"],
     "emblemType": "default"
+  },
+  "P": {
+    "shortName": "碳規則",
+    "title": "CFP-PCR 規則學習與解析中心",
+    "subtitle": "CFP-PCR Learning Hub",
+    "description": "收錄環境部現行 208 筆有效 PCR 與 2025 雙範本解剖，結合零 Token 系統界限圖工作台與外帶 Prompt，破解碳足跡盤查門檻。",
+    "whyElement": "取自 PCR 首字母 P，與 C、O 在非金屬區構成黃金三角，象徵碳足跡不可或缺的剛性規則。",
+    "url": "https://cfp-pcr-hub.pages.dev/",
+    "domainLabel": "cfp-pcr-hub.pages.dev",
+    "status": "live",
+    "statusLabel": "LIVE 上線中",
+    "tags": ["CFP-PCR", "ISO14067", "系統界限圖"],
+    "emblemType": "default"
   }
 }
