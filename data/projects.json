@@ -36,5 +36,18 @@
     "statusLabel": "LIVE 上線中",
     "tags": ["ICAO 方法學", "航空碳足跡", "商務差旅盤查"],
     "emblemType": "titanium"
+  },
+  "Fe": {
+    "shortName": "軌道碳算",
+    "title": "台灣軌道運輸碳足跡計算箱",
+    "subtitle": "Taiwan Track Carbon",
+    "description": "整合高鐵、台鐵、北高桃中捷運與輕軌免費里程資料，依官方碳標籤精算碳排並附完整查證引用。",
+    "whyElement": "鐵為鐵道之本，串聯高鐵台鐵與捷運輕軌，與航太鈦 Ti 並列海陸空碳排雙璧。",
+    "url": "https://tw-track-carbon.pages.dev/",
+    "domainLabel": "tw-track-carbon.pages.dev",
+    "status": "beta",
+    "statusLabel": "BETA 測試中",
+    "tags": ["軌道碳排", "範疇三差旅", "MRV引用"],
+    "emblemType": "default"
   }
 }
