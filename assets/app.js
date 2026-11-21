@@ -310,8 +310,9 @@ function renderSpotlight() {
 
   dom.spotlightCard.style.setProperty('--spot-color', family.color);
 
-  // 左欄：全息元素磚（僅在已點亮元素啟用 3D 雙面全息旋轉）
+  // 左欄：全息元素磚（僅在已點亮元素啟用 3D 雙面全息旋轉；雙字母符號套用 is-multi-char）
   dom.spotHoloTile.classList.toggle('is-lit-3d', Boolean(project));
+  dom.spotHoloTile.classList.toggle('is-multi-char', el.symbol.length > 1);
   dom.spotNumber.textContent = `#${String(el.number).padStart(2, '0')}`;
   dom.spotSymbol.textContent = el.symbol;
   dom.spotLayer1.textContent = el.symbol;

@@ -302,7 +302,7 @@ body {
   display: grid;
   grid-template-columns: repeat(18, minmax(0, 1fr));
   grid-template-rows:
-    repeat(3, minmax(84px, 92px))
+    repeat(3, minmax(92px, 100px))
     repeat(4, minmax(60px, 68px))
     14px
     repeat(2, minmax(60px, 68px));
@@ -319,7 +319,7 @@ body {
   grid-row: 1 / 4;
   z-index: 4;
   display: grid;
-  grid-template-columns: 142px minmax(0, 1fr) 134px;
+  grid-template-columns: 158px minmax(0, 1fr) 134px;
   gap: 16px;
   align-items: stretch;
   padding: 14px 16px;
@@ -410,6 +410,7 @@ body {
 .holo-center {
   text-align: center;
   margin: 2px 0;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -420,7 +421,7 @@ body {
 .holo-3d-stage {
   perspective: 750px;
   width: 100%;
-  height: 68px;
+  height: 126px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -428,10 +429,33 @@ body {
   justify-content: center;
 }
 
+/* 符號後方柔和的元素主題色徑向背光暈 */
+.holo-tile.is-lit-3d .holo-3d-stage::before {
+  content: "";
+  position: absolute;
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--spot-color, #00e676) 34%, transparent) 0%,
+    color-mix(in srgb, var(--spot-color, #00e676) 12%, transparent) 46%,
+    transparent 74%
+  );
+  filter: blur(8px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.holo-tile.is-lit-3d:hover .holo-3d-stage::before {
+  transform: scale(1.12);
+  opacity: 1;
+}
+
 .holo-3d-spinner {
   position: relative;
   width: 100%;
-  height: 58px;
+  height: 102px;
   transform-style: preserve-3d;
 }
 
@@ -453,7 +477,7 @@ body {
 .holo-tile.is-lit-3d:hover .holo-face {
   text-shadow:
     0 0 14px #ffffff,
-    0 0 28px color-mix(in srgb, var(--spot-color, #00e676) 92%, transparent);
+    0 0 30px color-mix(in srgb, var(--spot-color, #00e676) 95%, transparent);
 }
 
 .holo-face,
@@ -470,24 +494,31 @@ body {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   color: #ffffff;
-  text-shadow: 0 0 20px color-mix(in srgb, var(--spot-color, #00e676) 58%, transparent);
+  text-shadow: 0 0 22px color-mix(in srgb, var(--spot-color, #00e676) 62%, transparent);
 }
 
 .holo-symbol,
 .holo-face-front {
-  font-size: 2.75rem;
+  font-size: clamp(4.8rem, 6vw, 5.8rem);
   font-weight: 900;
-  line-height: 1.02;
+  line-height: 1;
   letter-spacing: -0.02em;
-  transform: translateZ(5px);
+  transform: translateZ(2px);
+}
+
+.holo-tile.is-multi-char .holo-symbol,
+.holo-tile.is-multi-char .holo-face-front {
+  font-size: clamp(4.1rem, 5.2vw, 5rem);
+  letter-spacing: -0.03em;
+  font-weight: 900;
 }
 
 .holo-face-back {
-  font-size: 2.35rem;
+  font-size: clamp(4.2rem, 5.2vw, 5rem);
   font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: 0.02em;
-  transform: rotateY(180deg) translateZ(5px);
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+  transform: rotateY(180deg) translateZ(8px);
   display: none;
 }
 
@@ -495,7 +526,7 @@ body {
   display: flex;
 }
 
-/* 中間 3 層微偏移 translateZ 的半透明霓虹發光層營造立體厚度 */
+/* 中間 3 層微偏移 translateZ(-2px, -4px, -6px) 的半透明霓虹發光層營造立體厚度 */
 .holo-depth-layer {
   display: none;
   pointer-events: none;
@@ -507,58 +538,63 @@ body {
 }
 
 .holo-depth-1 {
-  font-size: 2.75rem;
+  font-size: clamp(4.8rem, 6vw, 5.8rem);
   font-weight: 900;
-  line-height: 1.02;
+  line-height: 1;
   letter-spacing: -0.02em;
-  transform: translateZ(2.2px);
+  transform: translateZ(-2px);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  opacity: 0.36;
+  opacity: 0.34;
   filter: blur(0.6px);
 }
 
+.holo-tile.is-multi-char .holo-depth-1 {
+  font-size: clamp(4.1rem, 5.2vw, 5rem);
+  letter-spacing: -0.03em;
+}
+
 .holo-depth-2 {
-  width: 44px;
-  height: 44px;
+  width: 72px;
+  height: 72px;
   margin: auto;
   border-radius: 50%;
-  transform: translateZ(0px);
+  transform: translateZ(-4px);
   background: radial-gradient(
     circle,
-    color-mix(in srgb, var(--spot-color, #00e676) 42%, transparent) 0%,
+    color-mix(in srgb, var(--spot-color, #00e676) 40%, transparent) 0%,
     transparent 72%
   );
-  border: 1px solid color-mix(in srgb, var(--spot-color, #00e676) 35%, transparent);
+  border: 1px solid color-mix(in srgb, var(--spot-color, #00e676) 36%, transparent);
   opacity: 0.55;
 }
 
 .holo-depth-3 {
-  font-size: 2.35rem;
+  font-size: clamp(4.2rem, 5.2vw, 5rem);
   font-weight: 900;
-  line-height: 1.05;
-  transform: rotateY(180deg) translateZ(2.2px);
+  line-height: 1.02;
+  transform: rotateY(180deg) translateZ(6px);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  opacity: 0.36;
+  opacity: 0.34;
   filter: blur(0.6px);
 }
 
-/* 底部淡淡的發光投影線 */
+/* 底部淡淡的發光投影線（加寬至 72% 並稍微下移與英文名拉出優雅間距） */
 .holo-pedestal-glow {
   display: none;
-  width: 74px;
+  width: 72%;
   height: 4px;
-  margin-top: 2px;
+  margin-top: 10px;
   border-radius: 999px;
   background: radial-gradient(
     ellipse at center,
-    color-mix(in srgb, var(--spot-color, #00e676) 88%, #ffffff) 0%,
-    color-mix(in srgb, var(--spot-color, #00e676) 35%, transparent) 55%,
+    color-mix(in srgb, var(--spot-color, #00e676) 90%, #ffffff) 0%,
+    color-mix(in srgb, var(--spot-color, #00e676) 38%, transparent) 58%,
     transparent 100%
   );
-  box-shadow: 0 0 12px color-mix(in srgb, var(--spot-color, #00e676) 72%, transparent);
-  opacity: 0.82;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--spot-color, #00e676) 76%, transparent);
+  opacity: 0.85;
 }
 
 .holo-tile.is-lit-3d .holo-pedestal-glow {
@@ -587,7 +623,7 @@ body {
   font-size: 0.74rem;
   font-weight: 600;
   color: #cbd5e1;
-  margin-top: 3px;
+  margin-top: 8px;
 }
 
 .holo-bottom {
