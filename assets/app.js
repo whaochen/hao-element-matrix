@@ -129,6 +129,8 @@ function cacheDom() {
   dom.searchInput = document.getElementById('search-input');
   dom.searchClearBtn = document.getElementById('search-clear-btn');
   dom.litCount = document.getElementById('lit-count');
+  dom.veinCount = document.getElementById('vein-count');
+  dom.unlockProgressFill = document.getElementById('unlock-progress-fill');
   dom.headerViewToggle = document.getElementById('header-view-toggle');
   dom.listBackMatrixBtn = document.getElementById('list-back-matrix-btn');
   dom.filterBanner = document.getElementById('filter-banner');
@@ -1115,6 +1117,13 @@ async function init() {
 
     const litSymbols = Object.keys(state.projects).filter((s) => state.elementsBySymbol.has(s));
     dom.litCount.textContent = String(litSymbols.length);
+    if (dom.veinCount) {
+      dom.veinCount.textContent = String(state.veins.length);
+    }
+    if (dom.unlockProgressFill) {
+      const pct = Math.min(100, Math.max(2, (litSymbols.length / 118) * 100));
+      dom.unlockProgressFill.style.width = `${pct.toFixed(2)}%`;
+    }
 
     // 網址參數 ?el=... 優先鎖定指定元素，否則預設鎖定 C（碳）
     const urlSym = resolveUrlElementSymbol();

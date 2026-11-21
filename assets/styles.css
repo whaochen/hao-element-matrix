@@ -78,106 +78,313 @@ body {
 }
 
 /* ==========================================================================
-   頂部導覽與搜尋列
+   頂部全光譜極光艦橋（Aurora Command Bridge）
    ========================================================================== */
 .top-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 24px;
+  padding: 22px 28px;
   margin-bottom: 24px;
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse 52% 90% at 8% 15%, rgba(0, 212, 255, 0.22), transparent 65%),
+    radial-gradient(ellipse 46% 85% at 52% 0%, rgba(124, 58, 237, 0.24), transparent 62%),
+    radial-gradient(ellipse 48% 90% at 92% 85%, rgba(16, 185, 129, 0.20), transparent 64%),
+    linear-gradient(135deg, rgba(6, 11, 26, 0.96), rgba(9, 15, 34, 0.94));
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.56),
+    0 0 36px rgba(0, 212, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  overflow: hidden;
   flex-wrap: wrap;
 }
 
+/* 頂部與底部 2px 多色漸層發光能量線 */
+.top-header::before,
+.top-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.top-header::before {
+  top: 0;
+  background: linear-gradient(90deg, transparent, #00d4ff 22%, #7c3aed 52%, #10b981 80%, transparent);
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.65);
+}
+
+.top-header::after {
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, #10b981 20%, #00d4ff 50%, #7c3aed 78%, transparent);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.52);
+}
+
+/* 極輕量星雲微光流動效果 */
+.aurora-veil {
+  position: absolute;
+  inset: -40% -20%;
+  background:
+    radial-gradient(circle at 28% 45%, rgba(0, 212, 255, 0.14), transparent 45%),
+    radial-gradient(circle at 70% 55%, rgba(124, 58, 237, 0.14), transparent 46%),
+    radial-gradient(circle at 50% 65%, rgba(16, 185, 129, 0.10), transparent 48%);
+  filter: blur(24px);
+  opacity: 0.78;
+  pointer-events: none;
+  animation: auroraDrift 14s ease-in-out infinite alternate;
+}
+
 .brand-block {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
   min-width: 0;
+  flex: 1 1 420px;
 }
 
 .brand-emblem {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, rgba(0, 230, 118, 0.2), rgba(56, 189, 248, 0.16));
-  border: 1px solid rgba(0, 230, 118, 0.45);
-  box-shadow: 0 0 22px rgba(0, 230, 118, 0.22);
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 0.18), rgba(8, 13, 28, 0.85) 72%);
+  border: 1px solid rgba(0, 212, 255, 0.42);
+  box-shadow:
+    0 0 28px rgba(0, 212, 255, 0.34),
+    0 0 48px rgba(124, 58, 237, 0.22),
+    inset 0 0 18px rgba(16, 185, 129, 0.16);
   display: grid;
   place-items: center;
   flex-shrink: 0;
 }
 
-.brand-title {
-  margin: 0;
-  font-size: 1.35rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  flex-wrap: wrap;
+.core-ring-outer {
+  transform-origin: 32px 32px;
+  animation: slowSpin 18s linear infinite;
 }
 
-.brand-title-en {
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent-cyan);
-  opacity: 0.9;
+.core-ring-inner {
+  transform-origin: 32px 32px;
+  animation: slowSpin 11s linear infinite reverse;
 }
 
-.brand-subtitle {
-  margin: 3px 0 0;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  letter-spacing: 0.02em;
+.brand-copy {
+  min-width: 0;
 }
 
-.header-controls {
+.brand-title-row {
   display: flex;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
 }
 
+.brand-title {
+  margin: 0;
+  font-size: clamp(1.9rem, 2.8vw, 2.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+}
+
+.brand-title-text {
+  background: linear-gradient(
+    110deg,
+    #f8fafc 0%,
+    #bae6fd 28%,
+    #fde68a 52%,
+    #7dd3fc 76%,
+    #ffffff 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 14px rgba(0, 212, 255, 0.36));
+  animation: titleShimmer 7.5s ease-in-out infinite;
+}
+
+.brand-title-en {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #e0f2fe;
+  background: rgba(0, 212, 255, 0.12);
+  border: 1px solid rgba(0, 212, 255, 0.45);
+  box-shadow: 0 0 16px rgba(0, 212, 255, 0.22);
+}
+
+.brand-subtitle {
+  margin: 6px 0 0;
+  font-size: 0.84rem;
+  color: #cbd5e1;
+  letter-spacing: 0.03em;
+}
+
+/* 右側母艦總控儀表列（上下兩層） */
+.header-controls {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  width: min(100%, 468px);
+}
+
+.progress-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 13px;
+  background: rgba(7, 13, 28, 0.82);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 0 20px rgba(0, 212, 255, 0.1);
+}
+
+.progress-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.progress-metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+.progress-label {
+  font-weight: 700;
+  color: #7dd3fc;
+  letter-spacing: 0.04em;
+}
+
+.progress-fraction {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.84rem;
+  color: #e2e8f0;
+}
+
+.progress-num {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #69f0ae;
+  text-shadow: 0 0 12px rgba(0, 230, 118, 0.65);
+}
+
+.progress-total {
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.vein-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(255, 214, 0, 0.1);
+  border: 1px solid rgba(255, 214, 0, 0.35);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #fde68a;
+  white-space: nowrap;
+}
+
+.vein-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffd600;
+  box-shadow: 0 0 8px #ffd600;
+  animation: pulseDot 2.2s ease-in-out infinite;
+}
+
+.unlock-bar-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  overflow: hidden;
+}
+
+.unlock-bar-fill {
+  height: 100%;
+  min-width: 18px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #10b981, #00d4ff, #7c3aed);
+  background-size: 180% auto;
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.75);
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: titleShimmer 4s linear infinite;
+}
+
+.controls-bottom-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .search-box {
   position: relative;
-  width: 286px;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .search-box svg {
   position: absolute;
-  left: 12px;
+  left: 13px;
   top: 50%;
   transform: translateY(-50%);
   width: 15px;
   height: 15px;
-  color: var(--text-muted);
+  color: #7dd3fc;
   pointer-events: none;
 }
 
 .search-input {
   width: 100%;
-  padding: 9px 32px 9px 36px;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.78);
-  border: 1px solid var(--border-subtle);
+  padding: 10px 32px 10px 38px;
+  border-radius: 12px;
+  background: rgba(8, 14, 30, 0.88);
+  border: 1px solid rgba(0, 212, 255, 0.34);
   color: var(--text-primary);
-  font-size: 0.84rem;
+  font-size: 0.82rem;
   outline: none;
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.08);
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
 .search-input::placeholder {
-  color: var(--text-muted);
+  color: #94a3b8;
 }
 
 .search-input:focus {
-  border-color: rgba(56, 189, 248, 0.65);
-  background: rgba(15, 23, 42, 0.96);
-  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.14);
+  border-color: #00d4ff;
+  background: rgba(8, 14, 30, 0.98);
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.18), 0 0 20px rgba(0, 212, 255, 0.22);
 }
 
 .search-clear-btn {
@@ -203,20 +410,6 @@ body {
   display: inline-flex;
 }
 
-.progress-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(0, 230, 118, 0.1);
-  border: 1px solid rgba(0, 230, 118, 0.35);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #a7f3d0;
-  white-space: nowrap;
-}
-
 .live-dot {
   width: 7px;
   height: 7px;
@@ -231,23 +424,25 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid var(--border-subtle);
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(10, 18, 36, 0.9);
+  border: 1px solid rgba(124, 58, 237, 0.42);
   color: var(--text-primary);
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .view-switch-pill:hover,
 .view-switch-pill.is-active {
-  border-color: rgba(56, 189, 248, 0.6);
-  background: rgba(56, 189, 248, 0.14);
+  border-color: #00d4ff;
+  background: rgba(0, 212, 255, 0.16);
   color: #e0f2fe;
+  box-shadow: 0 0 16px rgba(0, 212, 255, 0.25);
 }
 
 /* 篩選狀態條 */
@@ -1701,6 +1896,26 @@ body {
   }
 }
 
+@keyframes auroraDrift {
+  0% {
+    transform: translate3d(-4%, -2%, 0) scale(1);
+    opacity: 0.72;
+  }
+  100% {
+    transform: translate3d(4%, 3%, 0) scale(1.06);
+    opacity: 0.92;
+  }
+}
+
+@keyframes titleShimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 @keyframes toastIn {
   from {
     opacity: 0;
@@ -1736,6 +1951,16 @@ body {
   }
 }
 
+@media (max-width: 1024px) {
+  .top-header {
+    padding: 20px 22px;
+  }
+
+  .header-controls {
+    width: 100%;
+  }
+}
+
 @media (max-width: 820px) {
   .mining-grid {
     grid-template-columns: 1fr;
@@ -1743,8 +1968,8 @@ body {
 
   .search-box {
     width: 100%;
-    min-width: 220px;
-    flex: 1;
+    min-width: 0;
+    flex: 1 1 200px;
   }
 }
 
@@ -1754,16 +1979,43 @@ body {
   }
 
   .top-header {
-    gap: 14px;
+    padding: 18px 16px;
+    border-radius: 16px;
+    gap: 16px;
     margin-bottom: 18px;
+  }
+
+  .brand-block {
+    gap: 14px;
+    flex-basis: 100%;
+  }
+
+  .brand-emblem {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+  }
+
+  .brand-emblem svg {
+    width: 50px;
+    height: 50px;
   }
 
   .header-controls {
     width: 100%;
   }
 
-  .brand-title {
-    font-size: 1.18rem;
+  .controls-bottom-row {
+    flex-wrap: wrap;
+  }
+
+  .search-box {
+    flex: 1 1 100%;
+  }
+
+  .view-switch-pill {
+    width: 100%;
+    justify-content: center;
   }
 
   .mining-zone {
