@@ -77,6 +77,37 @@
     return LOWER_INDEX[raw.toLowerCase()] || 'C';
   }
 
+  function shouldKeepFavicon(hostEl) {
+    if (hostEl.getAttribute('data-keep-favicon') === 'true') return true;
+    if (typeof document === 'undefined') return true;
+    if (document.documentElement?.getAttribute('data-keep-favicon') === 'true') return true;
+    if (document.body?.getAttribute('data-keep-favicon') === 'true') return true;
+    return Boolean(document.querySelector('link[rel*="icon"][data-keep-favicon="true"]'));
+  }
+
+  function applyElementFavicon(el) {
+    if (typeof document === 'undefined' || !document.head) return;
+    const fontSize = el.symbol.length > 1 ? 14 : 17;
+    const svg =
+      `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">` +
+      `<rect x="1.5" y="1.5" width="29" height="29" rx="7" fill="#080d1a" stroke="${el.color}" stroke-width="2.2"/>` +
+      `<text x="16" y="16.8" text-anchor="middle" dominant-baseline="central" ` +
+      `fill="#ffffff" font-family="system-ui,-apple-system,sans-serif" font-weight="900" font-size="${fontSize}">${el.symbol}</text>` +
+      `</svg>`;
+    const href = `data:image/svg+xml,${encodeURIComponent(svg)}`;
+
+    let iconLink = document.head.querySelector('link[rel="icon"][type="image/svg+xml"]');
+    if (!iconLink) {
+      iconLink = document.head.querySelector('link[rel="icon"]') || document.createElement('link');
+      iconLink.rel = 'icon';
+      iconLink.type = 'image/svg+xml';
+      if (!iconLink.parentNode) {
+        document.head.appendChild(iconLink);
+      }
+    }
+    iconLink.href = href;
+  }
+
   const STYLE = `
     *, *::before, *::after {
       box-sizing: border-box;
@@ -293,6 +324,10 @@
       const desc = `所屬矩陣：${BRAND_NAME} · 元素 ${el.symbol}（${el.nameZh}），第 ${el.number} 號`;
       this._link.title = desc;
       this._link.setAttribute('aria-label', `${desc}（開新分頁）`);
+
+      if (!shouldKeepFavicon(this)) {
+        applyElementFavicon(el);
+      }
     }
   }
 
