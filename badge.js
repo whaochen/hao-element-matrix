@@ -78,36 +78,44 @@
   }
 
   const STYLE = `
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
     :host {
       display: inline-block;
       vertical-align: middle;
       line-height: 1;
       font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, -apple-system, sans-serif;
       --hb-color: #00e676;
-      --hb-bg: rgba(8, 13, 26, 0.86);
-      --hb-border: color-mix(in srgb, var(--hb-color) 46%, rgba(148, 163, 184, 0.3));
+      --hb-bg: rgba(8, 13, 26, 0.88);
+      --hb-border: color-mix(in srgb, var(--hb-color) 48%, rgba(148, 163, 184, 0.32));
       --hb-text: #f1f5f9;
       --hb-sub: #94a3b8;
-      --hb-cube-bg: rgba(6, 10, 22, 0.95);
+      --hb-cube-bg: #070c18;
+      --hb-cube-text: #ffffff;
       --hb-shadow: 0 6px 18px rgba(0, 0, 0, 0.42);
     }
 
     :host([hidden]) { display: none; }
 
     :host([theme="light"]) {
-      --hb-bg: rgba(255, 255, 255, 0.92);
-      --hb-border: color-mix(in srgb, var(--hb-color) 52%, rgba(15, 23, 42, 0.18));
+      --hb-bg: rgba(255, 255, 255, 0.94);
+      --hb-border: color-mix(in srgb, var(--hb-color) 56%, rgba(15, 23, 42, 0.18));
       --hb-text: #0f172a;
       --hb-sub: #475569;
       --hb-cube-bg: #0f172a;
+      --hb-cube-text: #ffffff;
       --hb-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
     }
 
     a {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
-      padding: 4px 12px 4px 4px;
+      height: 36px;
+      padding: 4px 13px 4px 4px;
       border-radius: 999px;
       background: var(--hb-bg);
       border: 1px solid var(--hb-border);
@@ -115,6 +123,7 @@
       color: var(--hb-text);
       text-decoration: none;
       white-space: nowrap;
+      overflow: hidden;
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
@@ -134,16 +143,31 @@
     }
 
     :host([compact="true"]) a {
-      padding: 4px 8px 4px 4px;
+      padding: 4px 9px 4px 4px;
       gap: 5px;
     }
 
-    /* 迷你 3D 雙面旋轉元素方塊 */
+    /* 固定 28px × 28px 圓角微光框，完整置中於膠囊內不溢出 */
     .stage {
-      width: 26px;
-      height: 26px;
-      perspective: 300px;
-      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      border-radius: 8px;
+      background: linear-gradient(
+        155deg,
+        color-mix(in srgb, var(--hb-color) 30%, var(--hb-cube-bg)),
+        var(--hb-cube-bg)
+      );
+      border: 1.2px solid var(--hb-color);
+      box-shadow:
+        0 0 10px color-mix(in srgb, var(--hb-color) 42%, transparent),
+        inset 0 0 8px color-mix(in srgb, var(--hb-color) 20%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 260px;
+      overflow: hidden;
+      position: relative;
     }
 
     .cube {
@@ -164,32 +188,23 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 7px;
-      background: linear-gradient(
-        155deg,
-        color-mix(in srgb, var(--hb-color) 32%, var(--hb-cube-bg)),
-        var(--hb-cube-bg)
-      );
-      border: 1.2px solid var(--hb-color);
-      box-shadow:
-        0 0 8px color-mix(in srgb, var(--hb-color) 45%, transparent),
-        inset 0 0 6px color-mix(in srgb, var(--hb-color) 22%, transparent);
-      color: #ffffff;
+      color: var(--hb-cube-text);
       font-weight: 900;
-      text-shadow: 0 0 6px color-mix(in srgb, var(--hb-color) 80%, transparent);
+      line-height: 1;
+      text-shadow: 0 0 8px color-mix(in srgb, var(--hb-color) 82%, transparent);
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       user-select: none;
     }
 
     .front {
-      font-size: 12px;
+      font-size: 12.5px;
       letter-spacing: -0.02em;
       transform: translateZ(1px);
     }
 
     .back {
-      font-size: 13px;
+      font-size: 13.5px;
       transform: rotateY(180deg) translateZ(1px);
     }
 
@@ -200,6 +215,7 @@
       font-size: 12.5px;
       font-weight: 700;
       letter-spacing: 0.02em;
+      line-height: 1;
     }
 
     .arrow {

@@ -26,7 +26,7 @@
   },
   "Ti": {
     "shortName": "航程碳排",
-    "title": "ICAO 航空碳排放計算系統",
+    "title": "全球航空GHG排放計算器",
     "subtitle": "ICAO Aviation Carbon Calculator",
     "description": "依循 ICAO 國際民航組織方法學，估算全球航線大圓距離、艙等係數與商務差旅航空碳足跡，支援組織盤查與差旅減碳分析。",
     "whyElement": "鈦是航太客機結構的關鍵輕量化金屬，以此象徵全球航線差旅與航空碳排放的精密計算。",
@@ -39,7 +39,7 @@
   },
   "Fe": {
     "shortName": "軌道碳算",
-    "title": "台灣軌道運輸碳足跡計算箱",
+    "title": "臺灣軌道運輸GHG排放計算器",
     "subtitle": "Taiwan Track Carbon",
     "description": "整合高鐵、台鐵、北高桃中捷運與輕軌免費里程資料，依官方碳標籤精算碳排並附完整查證引用。",
     "whyElement": "鐵為鐵道之本，串聯高鐵台鐵與捷運輕軌，與航太鈦 Ti 並列海陸空碳排雙璧。",
@@ -52,7 +52,7 @@
   },
   "Zn": {
     "shortName": "海運碳排",
-    "title": "全球海運航線與碳排計算箱",
+    "title": "全球航海GHG排放計算器",
     "subtitle": "Sea Route Carbon Box",
     "description": "純前端全球海運最短航線與碳排估算工具，整合 Eurostat 路網、運河改道切換與 ISO 14064-1 查證佐證圖匯出。",
     "whyElement": "遠洋船舶常焊裝「犧牲陽極鋅塊」防海水腐蝕，以 Zn 象徵海運航線守護。",
