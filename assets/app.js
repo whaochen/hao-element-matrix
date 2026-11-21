@@ -100,9 +100,13 @@ function cacheDom() {
   dom.listDormantHeading = document.getElementById('list-dormant-heading');
 
   dom.spotlightCard = document.getElementById('spotlight-card');
+  dom.spotHoloTile = document.getElementById('spot-holo-tile');
   dom.spotNumber = document.getElementById('spot-number');
   dom.spotLockBadge = document.getElementById('spot-lock-badge');
   dom.spotSymbol = document.getElementById('spot-symbol');
+  dom.spotLayer1 = document.getElementById('spot-layer-1');
+  dom.spotLayer3 = document.getElementById('spot-layer-3');
+  dom.spotBackZh = document.getElementById('spot-back-zh');
   dom.spotNameZh = document.getElementById('spot-name-zh');
   dom.spotNameEn = document.getElementById('spot-name-en');
   dom.spotFamilyShort = document.getElementById('spot-family-short');
@@ -113,6 +117,9 @@ function cacheDom() {
   dom.spotTitle = document.getElementById('spot-title');
   dom.spotSubtitle = document.getElementById('spot-subtitle');
   dom.spotDesc = document.getElementById('spot-desc');
+  dom.spotWhy = document.getElementById('spot-why');
+  dom.spotWhyTitle = document.getElementById('spot-why-title');
+  dom.spotWhyText = document.getElementById('spot-why-text');
   dom.spotTags = document.getElementById('spot-tags');
   dom.spotDomain = document.getElementById('spot-domain');
   dom.spotLaunchBtn = document.getElementById('spot-launch-btn');
@@ -303,9 +310,13 @@ function renderSpotlight() {
 
   dom.spotlightCard.style.setProperty('--spot-color', family.color);
 
-  // 左欄：全息元素磚
+  // 左欄：全息元素磚（僅在已點亮元素啟用 3D 雙面全息旋轉）
+  dom.spotHoloTile.classList.toggle('is-lit-3d', Boolean(project));
   dom.spotNumber.textContent = `#${String(el.number).padStart(2, '0')}`;
   dom.spotSymbol.textContent = el.symbol;
+  dom.spotLayer1.textContent = el.symbol;
+  dom.spotLayer3.textContent = el.nameZh;
+  dom.spotBackZh.textContent = el.nameZh;
   dom.spotNameZh.textContent = el.nameZh;
   dom.spotNameEn.textContent = el.nameEn;
   dom.spotFamilyShort.textContent = family.label;
@@ -321,7 +332,7 @@ function renderSpotlight() {
     dom.spotLockBadge.title = '點擊鎖定此元素';
   }
 
-  // 中欄：徽章、標題、完整介紹、標籤與網域
+  // 中欄：徽章、標題、完整介紹、為何是這個元素彩蛋欄、標籤與網域
   dom.spotEmblem.innerHTML = buildEmblemSvg(project?.emblemType || 'default', family.color);
   dom.spotSectorPill.textContent = family.sector;
 
@@ -331,6 +342,14 @@ function renderSpotlight() {
     dom.spotTitle.textContent = project.title;
     dom.spotSubtitle.textContent = project.subtitle || '';
     dom.spotDesc.textContent = project.description;
+
+    if (project.whyElement) {
+      dom.spotWhyTitle.textContent = `✦ 為何是 ${el.symbol}（${el.nameZh}）？`;
+      dom.spotWhyText.textContent = project.whyElement;
+      dom.spotWhy.hidden = false;
+    } else {
+      dom.spotWhy.hidden = true;
+    }
 
     dom.spotTags.innerHTML = (project.tags || [])
       .map((tag) => `<span class="spot-tag">${escapeHtml(tag)}</span>`)
@@ -348,6 +367,7 @@ function renderSpotlight() {
     dom.spotTitle.textContent = `${el.nameZh}（${el.symbol}）— 尚未點亮`;
     dom.spotSubtitle.textContent = `${el.nameEn} · Atomic #${el.number} · ${family.label}`;
     dom.spotDesc.textContent = `此座標歸屬「${family.sector}」規劃領域，目前處於休眠待探勘狀態。未來完成新系統後，僅需於 data/projects.json 新增「${el.symbol}」條目即可立即點亮。`;
+    dom.spotWhy.hidden = true;
 
     dom.spotTags.innerHTML = [family.label, `第 ${el.row <= 7 ? el.row : el.row === 9 ? 6 : 7} 週期`, `原子量 ${el.mass}`]
       .map((tag) => `<span class="spot-tag">${escapeHtml(tag)}</span>`)
@@ -665,9 +685,11 @@ function matchesElement(el) {
     el.nameEn,
     family.label,
     family.sector,
+    project?.shortName || '',
     project?.title || '',
     project?.subtitle || '',
     project?.description || '',
+    project?.whyElement || '',
     ...(project?.tags || [])
   ]
     .join(' ')
@@ -768,6 +790,14 @@ function renderListView() {
               </div>
             </div>
             <p class="spot-desc">${escapeHtml(proj.description)}</p>
+            ${
+              proj.whyElement
+                ? `<div class="spot-why" style="--spot-color: ${fam.color};">
+                     <span class="spot-why-title">✦ 為何是 ${escapeHtml(el.symbol)}（${escapeHtml(el.nameZh)}）？</span>
+                     <span class="spot-why-text">${escapeHtml(proj.whyElement)}</span>
+                   </div>`
+                : ''
+            }
             <div class="spot-footer">
               <div class="spot-tags">${tagsHtml}</div>
               <a

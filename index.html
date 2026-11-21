@@ -128,7 +128,7 @@
               aria-label="元素系統詳細資訊卡"
             >
               <!-- 左欄：放大全息元素磚 -->
-              <div class="holo-tile">
+              <div id="spot-holo-tile" class="holo-tile is-lit-3d">
                 <div class="holo-top">
                   <span id="spot-number" class="holo-number">#06</span>
                   <button
@@ -141,7 +141,16 @@
                   </button>
                 </div>
                 <div class="holo-center">
-                  <div id="spot-symbol" class="holo-symbol">C</div>
+                  <div class="holo-3d-stage">
+                    <div id="spot-3d-spinner" class="holo-3d-spinner">
+                      <div id="spot-symbol" class="holo-face holo-face-front holo-symbol">C</div>
+                      <div id="spot-layer-1" class="holo-depth-layer holo-depth-1" aria-hidden="true">C</div>
+                      <div id="spot-layer-2" class="holo-depth-layer holo-depth-2" aria-hidden="true"></div>
+                      <div id="spot-layer-3" class="holo-depth-layer holo-depth-3" aria-hidden="true">碳</div>
+                      <div id="spot-back-zh" class="holo-face holo-face-back">碳</div>
+                    </div>
+                    <div class="holo-pedestal-glow" aria-hidden="true"></div>
+                  </div>
                   <div id="spot-name-zh" class="holo-name-zh">碳</div>
                   <div id="spot-name-en" class="holo-name-en">Carbon</div>
                 </div>
@@ -166,6 +175,11 @@
                 </div>
 
                 <p id="spot-desc" class="spot-desc"></p>
+
+                <div id="spot-why" class="spot-why" hidden>
+                  <span id="spot-why-title" class="spot-why-title"></span>
+                  <span id="spot-why-text" class="spot-why-text"></span>
+                </div>
 
                 <div class="spot-footer">
                   <div id="spot-tags" class="spot-tags"></div>
