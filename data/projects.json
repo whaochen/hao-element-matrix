@@ -9,7 +9,11 @@
     "status": "live",
     "statusLabel": "LIVE 上線中",
     "accessTier": "L0",
-    "tags": ["ISO 14067", "碳足跡係數", "環境部開放資料"],
+    "tags": [
+      "ISO 14067",
+      "碳足跡係數",
+      "環境部開放資料"
+    ],
     "emblemType": "carbon"
   },
   "O": {
@@ -23,7 +27,11 @@
     "status": "live",
     "statusLabel": "LIVE 上線中",
     "accessTier": "L0",
-    "tags": ["環境政策", "法規時間軸", "政策關聯地圖"],
+    "tags": [
+      "環境政策",
+      "法規時間軸",
+      "政策關聯地圖"
+    ],
     "emblemType": "oxygen"
   },
   "Ti": {
@@ -37,7 +45,11 @@
     "status": "live",
     "statusLabel": "LIVE 上線中",
     "accessTier": "L0+L1",
-    "tags": ["ICAO 方法學", "航空碳足跡", "商務差旅盤查"],
+    "tags": [
+      "ICAO 方法學",
+      "航空碳足跡",
+      "商務差旅盤查"
+    ],
     "emblemType": "titanium"
   },
   "Fe": {
@@ -51,7 +63,11 @@
     "status": "beta",
     "statusLabel": "BETA 測試中",
     "accessTier": "L0+L1",
-    "tags": ["軌道碳排", "範疇三差旅", "MRV引用"],
+    "tags": [
+      "軌道碳排",
+      "範疇三差旅",
+      "MRV引用"
+    ],
     "emblemType": "default"
   },
   "Zn": {
@@ -65,7 +81,11 @@
     "status": "live",
     "statusLabel": "LIVE 上線中",
     "accessTier": "L0+L1",
-    "tags": ["海運距離", "類別三盤查", "航線佐證"],
+    "tags": [
+      "海運距離",
+      "類別三盤查",
+      "航線佐證"
+    ],
     "emblemType": "default"
   },
   "P": {
@@ -79,7 +99,29 @@
     "status": "live",
     "statusLabel": "LIVE 上線中",
     "accessTier": "L0+L1",
-    "tags": ["CFP-PCR", "ISO14067", "系統界限圖"],
+    "tags": [
+      "CFP-PCR",
+      "ISO14067",
+      "系統界限圖"
+    ],
+    "emblemType": "default"
+  },
+  "Cr": {
+    "shortName": "陸運碳排",
+    "title": "臺灣陸地運輸GHG排放計算器",
+    "subtitle": "Taiwan Road GHG",
+    "description": "串接環境部公路運輸9大類係數與Google Maps最短距離原生截圖，支援單筆試算與20筆批次ZIP查證匯出。",
+    "whyElement": "鉻是車體高強度合金與汽機車排氣系統核心元素，象徵公路運具碳排精準盤查。",
+    "url": "https://tw-road-carbon.pages.dev/",
+    "domainLabel": "tw-road-carbon.pages.dev",
+    "status": "beta",
+    "statusLabel": "BETA 測試中",
+    "accessTier": "L0+L1",
+    "tags": [
+      "環境部CFP",
+      "最短距離",
+      "批次截圖ZIP"
+    ],
     "emblemType": "default"
   }
 }
