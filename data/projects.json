@@ -8,6 +8,7 @@
     "domainLabel": "cfp-query-web.carbon-factor-search.workers.dev",
     "status": "live",
     "statusLabel": "LIVE 上線中",
+    "accessTier": "L0",
     "tags": ["ISO 14067", "碳足跡係數", "環境部開放資料"],
     "emblemType": "carbon"
   },
@@ -21,6 +22,7 @@
     "domainLabel": "moenv-policy-pulse.pages.dev",
     "status": "live",
     "statusLabel": "LIVE 上線中",
+    "accessTier": "L0",
     "tags": ["環境政策", "法規時間軸", "政策關聯地圖"],
     "emblemType": "oxygen"
   },
@@ -34,6 +36,7 @@
     "domainLabel": "icao-carbon-v2.pages.dev",
     "status": "live",
     "statusLabel": "LIVE 上線中",
+    "accessTier": "L0+L1",
     "tags": ["ICAO 方法學", "航空碳足跡", "商務差旅盤查"],
     "emblemType": "titanium"
   },
@@ -47,6 +50,7 @@
     "domainLabel": "tw-track-carbon.pages.dev",
     "status": "beta",
     "statusLabel": "BETA 測試中",
+    "accessTier": "L0+L1",
     "tags": ["軌道碳排", "範疇三差旅", "MRV引用"],
     "emblemType": "default"
   },
@@ -60,6 +64,7 @@
     "domainLabel": "sea-route-carbon.pages.dev",
     "status": "live",
     "statusLabel": "LIVE 上線中",
+    "accessTier": "L0+L1",
     "tags": ["海運距離", "類別三盤查", "航線佐證"],
     "emblemType": "default"
   },
@@ -73,6 +78,7 @@
     "domainLabel": "cfp-pcr-hub.pages.dev",
     "status": "live",
     "statusLabel": "LIVE 上線中",
+    "accessTier": "L0+L1",
     "tags": ["CFP-PCR", "ISO14067", "系統界限圖"],
     "emblemType": "default"
   }
