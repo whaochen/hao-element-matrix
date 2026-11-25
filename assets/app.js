@@ -72,6 +72,20 @@ const FAMILY_ORDER = [
 ];
 
 const MINING_STORAGE_KEY = 'hao_element_matrix_mining_energy_v1';
+const THEME_STORAGE_KEY = 'hao_theme_pref';
+
+const LIGHT_FAMILY_COLORS = {
+  'reactive-nonmetal': '#0284C7',
+  'alkali-metal': '#A21CAF',
+  'alkaline-earth': '#6D28D9',
+  'transition-metal': '#0369A1',
+  metalloid: '#047857',
+  'post-transition': '#C2410C',
+  halogen: '#B45309',
+  'noble-gas': '#D97706',
+  lanthanide: '#4D7C0F',
+  actinide: '#B91C1C'
+};
 
 const state = {
   elements: [],
@@ -86,7 +100,9 @@ const state = {
   viewMode: 'matrix', // 'matrix' | 'list'
   userToggledView: false,
   isRadarScanning: false,
-  miningClicks: {}
+  miningClicks: {},
+  themePref: 'system', // 'system' | 'dark' | 'light'
+  resolvedTheme: 'dark'
 };
 
 const dom = {};
@@ -132,6 +148,7 @@ function cacheDom() {
   dom.veinCount = document.getElementById('vein-count');
   dom.unlockProgressFill = document.getElementById('unlock-progress-fill');
   dom.headerViewToggle = document.getElementById('header-view-toggle');
+  dom.themeSwitcher = document.getElementById('theme-switcher');
   dom.listBackMatrixBtn = document.getElementById('list-back-matrix-btn');
   dom.filterBanner = document.getElementById('filter-banner');
   dom.filterBannerText = document.getElementById('filter-banner-text');
@@ -153,13 +170,77 @@ function cacheDom() {
 }
 
 function getFamilyInfo(familyKey) {
-  return (
+  const base =
     FAMILY_META[familyKey] || {
       label: '未分類',
       sector: '探索領域',
       color: '#38bdf8'
+    };
+
+  if (state.resolvedTheme === 'light' && LIGHT_FAMILY_COLORS[familyKey]) {
+    return { ...base, color: LIGHT_FAMILY_COLORS[familyKey] };
+  }
+  return base;
+}
+
+function buildLaunchUrl(rawUrl) {
+  if (!rawUrl || rawUrl === '#') return '#';
+  if (state.themePref !== 'light' && state.themePref !== 'dark') {
+    return rawUrl;
+  }
+  try {
+    const parsed = new URL(rawUrl, window.location.href);
+    parsed.searchParams.set('theme', state.themePref);
+    return parsed.toString();
+  } catch {
+    return rawUrl;
+  }
+}
+
+function resolveTheme(pref) {
+  if (pref === 'light' || pref === 'dark') return pref;
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light';
+}
+
+function applyTheme(pref, persist = false) {
+  const validPref = pref === 'light' || pref === 'dark' || pref === 'system' ? pref : 'system';
+  const resolved = resolveTheme(validPref);
+  const changed = state.resolvedTheme !== resolved || state.themePref !== validPref;
+
+  state.themePref = validPref;
+  state.resolvedTheme = resolved;
+
+  document.documentElement.dataset.themePref = validPref;
+  document.documentElement.dataset.theme = resolved;
+
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) {
+    meta.setAttribute('content', resolved === 'light' ? '#F4F7FA' : '#050811');
+  }
+
+  if (persist) {
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, validPref);
+    } catch {
+      // 隱私模式或儲存受限時略過
     }
-  );
+  }
+
+  if (dom.themeSwitcher) {
+    dom.themeSwitcher.querySelectorAll('.theme-seg-btn').forEach((btn) => {
+      const isMatch = btn.dataset.themePref === validPref;
+      btn.classList.toggle('is-active', isMatch);
+      btn.setAttribute('aria-pressed', String(isMatch));
+    });
+  }
+
+  if (changed && state.elements.length > 0) {
+    renderPeriodicGrid();
+    renderFamilyWheel();
+    renderSpotlight();
+  }
 }
 
 function showToast(message, duration = 3000) {
@@ -361,7 +442,7 @@ function renderSpotlight() {
 
     // 右欄按鈕：已上線
     dom.spotLaunchBtn.textContent = '前往系統 ↗';
-    dom.spotLaunchBtn.href = project.url;
+    dom.spotLaunchBtn.href = buildLaunchUrl(project.url);
     dom.spotLaunchBtn.classList.remove('is-disabled');
     dom.spotLaunchBtn.dataset.live = 'true';
   } else {
@@ -806,7 +887,7 @@ function renderListView() {
               <a
                 class="action-btn action-btn-primary"
                 style="width: auto; flex: none; padding: 7px 14px;"
-                href="${escapeHtml(proj.url)}"
+                href="${escapeHtml(buildLaunchUrl(proj.url))}"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -1065,6 +1146,24 @@ function bindEvents() {
     }
   });
 
+  // 主題三段切換控制（跟隨系統 / 深色 / 淺色）
+  if (dom.themeSwitcher) {
+    dom.themeSwitcher.querySelectorAll('.theme-seg-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        applyTheme(btn.dataset.themePref, true);
+      });
+    });
+  }
+
+  if (window.matchMedia) {
+    const colorSchemeMq = window.matchMedia('(prefers-color-scheme: dark)');
+    colorSchemeMq.addEventListener('change', () => {
+      if (state.themePref === 'system') {
+        applyTheme('system', false);
+      }
+    });
+  }
+
   // 手機寬度 < 680px 自動切換清單視圖（僅在使用者未手動覆寫時）
   const mq = window.matchMedia('(max-width: 680px)');
   const applyResponsiveView = () => {
@@ -1095,6 +1194,8 @@ function resolveUrlElementSymbol() {
 
 async function init() {
   cacheDom();
+  const initialPref = document.documentElement.dataset.themePref || 'system';
+  applyTheme(initialPref, false);
   initConstellation('constellation-canvas');
   state.miningClicks = loadMiningClicks();
 

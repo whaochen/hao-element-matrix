@@ -9,6 +9,25 @@
     content="晧脈元素庫（Hao Element Matrix）以 118 化學元素週期表為視覺隱喻，收錄環境碳足跡、政策脈絡、工程模擬與 AI 協作數位系統。"
   />
   <meta name="theme-color" content="#050811" />
+  <script>
+    (function () {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var urlTheme = params.get('theme');
+        var pref = (urlTheme === 'light' || urlTheme === 'dark' || urlTheme === 'system')
+          ? urlTheme
+          : (localStorage.getItem('hao_theme_pref') || 'system');
+        if (pref !== 'light' && pref !== 'dark' && pref !== 'system') pref = 'system';
+        var isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var resolved = pref === 'system' ? (isDark ? 'dark' : 'light') : pref;
+        var root = document.documentElement;
+        root.dataset.themePref = pref;
+        root.dataset.theme = resolved;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', resolved === 'light' ? '#F4F7FA' : '#050811');
+      } catch (e) {}
+    })();
+  </script>
   <link
     rel="icon"
     type="image/svg+xml"
@@ -159,6 +178,12 @@
           >
             📋 清單視圖
           </button>
+
+          <div id="theme-switcher" class="theme-switcher" role="group" aria-label="外觀主題切換">
+            <button type="button" class="theme-seg-btn" data-theme-pref="system" aria-pressed="true" title="跟隨系統外觀">🖥️ 系統</button>
+            <button type="button" class="theme-seg-btn" data-theme-pref="dark" aria-pressed="false" title="深色模式">🌙 深色</button>
+            <button type="button" class="theme-seg-btn" data-theme-pref="light" aria-pressed="false" title="淺色高對比模式">☀️ 淺色</button>
+          </div>
         </div>
       </div>
     </header>

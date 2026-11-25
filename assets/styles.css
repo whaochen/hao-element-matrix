@@ -242,7 +242,7 @@ body {
   flex-direction: column;
   align-items: stretch;
   gap: 10px;
-  width: min(100%, 468px);
+  width: min(100%, 580px);
 }
 
 .progress-card {
@@ -344,13 +344,14 @@ body {
 .controls-bottom-row {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .search-box {
   position: relative;
-  flex: 1 1 auto;
-  min-width: 0;
+  flex: 1 1 245px;
+  min-width: 220px;
 }
 
 .search-box svg {
@@ -443,6 +444,43 @@ body {
   background: rgba(0, 212, 255, 0.16);
   color: #e0f2fe;
   box-shadow: 0 0 16px rgba(0, 212, 255, 0.25);
+}
+
+/* 三段外觀切換膠囊（跟隨系統 / 深色 / 淺色） */
+.theme-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 12px;
+  background: rgba(8, 14, 30, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  flex-shrink: 0;
+}
+
+.theme-seg-btn {
+  border: 1px solid transparent;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 6px 9px;
+  border-radius: 9px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.18s ease;
+}
+
+.theme-seg-btn:hover {
+  color: #f1f5f9;
+  background: rgba(148, 163, 184, 0.14);
+}
+
+.theme-seg-btn.is-active {
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.26), rgba(124, 58, 237, 0.28));
+  border-color: rgba(0, 212, 255, 0.55);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.22);
 }
 
 /* 篩選狀態條 */
@@ -2050,4 +2088,683 @@ body {
   .holo-tile.is-lit-3d .holo-name-zh {
     display: block;
   }
+}
+
+/* ==========================================================================
+   淺色高對比深寶石模式（:root[data-theme="light"]）
+   ========================================================================== */
+:root[data-theme="light"] {
+  --bg-void: #f4f7fa;
+  --bg-surface: rgba(255, 255, 255, 0.92);
+  --bg-surface-strong: rgba(255, 255, 255, 0.96);
+  --border-subtle: rgba(15, 23, 42, 0.14);
+  --border-bright: rgba(15, 23, 42, 0.28);
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #475569;
+  --accent-live: #047857;
+  --accent-cyan: #0369a1;
+  --accent-purple: #6d28d9;
+  --accent-amber: #b45309;
+
+  --fam-alkali-metal: #a21caf;
+  --fam-alkaline-earth: #6d28d9;
+  --fam-transition-metal: #0369a1;
+  --fam-post-transition: #c2410c;
+  --fam-metalloid: #047857;
+  --fam-reactive-nonmetal: #0284c7;
+  --fam-halogen: #b45309;
+  --fam-noble-gas: #d97706;
+  --fam-lanthanide: #4d7c0f;
+  --fam-actinide: #b91c1c;
+}
+
+:root[data-theme="light"] body {
+  background:
+    radial-gradient(ellipse 80% 50% at 12% 0%, rgba(2, 132, 199, 0.08), transparent 62%),
+    radial-gradient(ellipse 70% 45% at 88% 8%, rgba(109, 40, 217, 0.07), transparent 58%),
+    radial-gradient(ellipse 65% 50% at 50% 100%, rgba(4, 120, 87, 0.06), transparent 65%),
+    #f4f7fa;
+  color: #0f172a;
+}
+
+/* 晨曦極光玻璃母艦 Banner */
+:root[data-theme="light"] .top-header {
+  background:
+    radial-gradient(ellipse 52% 90% at 10% 15%, rgba(2, 132, 199, 0.12), transparent 65%),
+    radial-gradient(ellipse 46% 85% at 52% 0%, rgba(109, 40, 217, 0.10), transparent 62%),
+    radial-gradient(ellipse 48% 90% at 92% 85%, rgba(4, 120, 87, 0.10), transparent 64%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(240, 249, 255, 0.94));
+  border: 1px solid rgba(3, 105, 161, 0.22);
+  box-shadow:
+    0 16px 38px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+:root[data-theme="light"] .top-header::before {
+  background: linear-gradient(90deg, transparent, #0284c7 22%, #6d28d9 52%, #047857 80%, transparent);
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.35);
+}
+
+:root[data-theme="light"] .top-header::after {
+  background: linear-gradient(90deg, transparent, #047857 20%, #0284c7 50%, #6d28d9 78%, transparent);
+  box-shadow: 0 0 8px rgba(4, 120, 87, 0.28);
+}
+
+:root[data-theme="light"] .aurora-veil {
+  opacity: 0.32;
+}
+
+:root[data-theme="light"] .brand-emblem {
+  background: radial-gradient(circle, rgba(224, 242, 254, 0.95), rgba(241, 245, 249, 0.92));
+  border: 1px solid rgba(2, 132, 199, 0.42);
+  box-shadow:
+    0 8px 22px rgba(2, 132, 199, 0.18),
+    inset 0 0 12px rgba(109, 40, 217, 0.1);
+}
+
+:root[data-theme="light"] .brand-title-text {
+  background: linear-gradient(
+    110deg,
+    #0f172a 0%,
+    #0369a1 32%,
+    #0284c7 58%,
+    #6d28d9 82%,
+    #0f172a 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 6px rgba(3, 105, 161, 0.14));
+}
+
+:root[data-theme="light"] .brand-title-en {
+  color: #0369a1;
+  background: rgba(2, 132, 199, 0.1);
+  border-color: rgba(2, 132, 199, 0.35);
+  box-shadow: none;
+}
+
+:root[data-theme="light"] .brand-subtitle {
+  color: #334155;
+}
+
+:root[data-theme="light"] .progress-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(3, 105, 161, 0.24);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+}
+
+:root[data-theme="light"] .progress-metric {
+  color: #334155;
+}
+
+:root[data-theme="light"] .progress-label {
+  color: #0369a1;
+}
+
+:root[data-theme="light"] .progress-fraction {
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .progress-num {
+  color: #047857;
+  text-shadow: none;
+}
+
+:root[data-theme="light"] .progress-total {
+  color: #475569;
+}
+
+:root[data-theme="light"] .vein-indicator {
+  background: rgba(180, 83, 9, 0.1);
+  border-color: rgba(180, 83, 9, 0.34);
+  color: #92400e;
+}
+
+:root[data-theme="light"] .vein-dot {
+  background: #b45309;
+  box-shadow: 0 0 6px rgba(180, 83, 9, 0.5);
+}
+
+:root[data-theme="light"] .unlock-bar-track {
+  background: rgba(15, 23, 42, 0.1);
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+:root[data-theme="light"] .unlock-bar-fill {
+  background: linear-gradient(90deg, #047857, #0284c7, #6d28d9);
+  box-shadow: none;
+}
+
+:root[data-theme="light"] .search-box svg {
+  color: #0369a1;
+}
+
+:root[data-theme="light"] .search-input {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(15, 23, 42, 0.22);
+  color: #0f172a;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+:root[data-theme="light"] .search-input::placeholder {
+  color: #64748b;
+}
+
+:root[data-theme="light"] .search-input:focus {
+  background: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.16);
+}
+
+:root[data-theme="light"] .search-clear-btn {
+  background: rgba(15, 23, 42, 0.12);
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .view-switch-pill {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(15, 23, 42, 0.22);
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .view-switch-pill:hover,
+:root[data-theme="light"] .view-switch-pill.is-active {
+  border-color: #0284c7;
+  background: rgba(2, 132, 199, 0.12);
+  color: #0369a1;
+  box-shadow: none;
+}
+
+:root[data-theme="light"] .theme-switcher {
+  background: rgba(241, 245, 249, 0.92);
+  border-color: rgba(15, 23, 42, 0.18);
+}
+
+:root[data-theme="light"] .theme-seg-btn {
+  color: #475569;
+}
+
+:root[data-theme="light"] .theme-seg-btn:hover {
+  color: #0f172a;
+  background: rgba(15, 23, 42, 0.06);
+}
+
+:root[data-theme="light"] .theme-seg-btn.is-active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #0369a1, #0284c7);
+  border-color: #0369a1;
+  box-shadow: 0 2px 8px rgba(3, 105, 161, 0.28);
+}
+
+:root[data-theme="light"] .filter-banner {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(2, 132, 199, 0.35);
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .filter-reset-btn {
+  background: #f1f5f9;
+  border-color: rgba(15, 23, 42, 0.22);
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .filter-reset-btn:hover {
+  border-color: #0284c7;
+  color: #0369a1;
+}
+
+/* 淺色中央資訊卡與 3D 深寶石全息磚 */
+:root[data-theme="light"] .spotlight-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1.5px solid color-mix(in srgb, var(--spot-color, #0284c7) 42%, rgba(15, 23, 42, 0.14));
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.10),
+    0 2px 10px rgba(15, 23, 42, 0.05);
+}
+
+:root[data-theme="light"] .spotlight-card::before {
+  background: radial-gradient(
+    circle at 14% 20%,
+    color-mix(in srgb, var(--spot-color, #0284c7) 10%, transparent),
+    transparent 52%
+  );
+}
+
+:root[data-theme="light"] .holo-tile {
+  background: linear-gradient(
+    160deg,
+    color-mix(in srgb, var(--spot-color, #0284c7) 12%, #ffffff),
+    #f8fafc
+  );
+  border: 1.5px solid color-mix(in srgb, var(--spot-color, #0284c7) 68%, rgba(15, 23, 42, 0.15));
+  box-shadow:
+    0 6px 18px color-mix(in srgb, var(--spot-color, #0284c7) 16%, transparent),
+    inset 0 0 14px color-mix(in srgb, var(--spot-color, #0284c7) 7%, transparent);
+}
+
+:root[data-theme="light"] .holo-number {
+  color: color-mix(in srgb, var(--spot-color, #0284c7) 85%, #0f172a);
+}
+
+:root[data-theme="light"] .lock-badge {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(15, 23, 42, 0.22);
+  color: #334155;
+}
+
+:root[data-theme="light"] .lock-badge.is-locked {
+  background: #0f172a;
+  border-color: #0f172a;
+  color: #ffffff;
+}
+
+:root[data-theme="light"] .holo-face {
+  color: color-mix(in srgb, var(--spot-color, #0284c7) 62%, #0f172a);
+  text-shadow:
+    0 2px 10px color-mix(in srgb, var(--spot-color, #0284c7) 26%, transparent),
+    0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+:root[data-theme="light"] .holo-tile.is-lit-3d:hover .holo-face {
+  color: #0f172a;
+  text-shadow: 0 3px 14px color-mix(in srgb, var(--spot-color, #0284c7) 34%, transparent);
+}
+
+:root[data-theme="light"] .holo-depth-1,
+:root[data-theme="light"] .holo-depth-3 {
+  color: color-mix(in srgb, var(--spot-color, #0284c7) 78%, #0f172a);
+  opacity: 0.28;
+}
+
+:root[data-theme="light"] .holo-pedestal-glow {
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--spot-color, #0284c7) 75%, #0f172a) 0%,
+    color-mix(in srgb, var(--spot-color, #0284c7) 24%, transparent) 58%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px color-mix(in srgb, var(--spot-color, #0284c7) 35%, transparent);
+}
+
+:root[data-theme="light"] .holo-name-zh {
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .holo-name-en,
+:root[data-theme="light"] .holo-tile.is-lit-3d .holo-name-en {
+  color: #334155;
+}
+
+:root[data-theme="light"] .holo-bottom {
+  color: #475569;
+  border-top-color: rgba(15, 23, 42, 0.14);
+}
+
+:root[data-theme="light"] .spot-emblem {
+  background: color-mix(in srgb, var(--spot-color, #0284c7) 10%, #ffffff);
+  border-color: color-mix(in srgb, var(--spot-color, #0284c7) 40%, rgba(15, 23, 42, 0.1));
+}
+
+:root[data-theme="light"] .status-pill.is-live {
+  background: rgba(4, 120, 87, 0.12);
+  border-color: rgba(4, 120, 87, 0.45);
+  color: #065f46;
+}
+
+:root[data-theme="light"] .status-pill.is-dormant {
+  background: rgba(15, 23, 42, 0.06);
+  border-color: rgba(15, 23, 42, 0.22);
+  color: #334155;
+}
+
+:root[data-theme="light"] .sector-pill {
+  color: color-mix(in srgb, var(--spot-color, #0284c7) 85%, #0f172a);
+  background: color-mix(in srgb, var(--spot-color, #0284c7) 11%, #ffffff);
+  border-color: color-mix(in srgb, var(--spot-color, #0284c7) 36%, transparent);
+}
+
+:root[data-theme="light"] .spot-title {
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .spot-subtitle,
+:root[data-theme="light"] .spot-desc {
+  color: #334155;
+}
+
+:root[data-theme="light"] .spot-why {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--spot-color, #0284c7) 10%, #ffffff),
+    rgba(241, 245, 249, 0.6)
+  );
+  box-shadow: none;
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .spot-why-title {
+  color: color-mix(in srgb, var(--spot-color, #0284c7) 88%, #0f172a);
+}
+
+:root[data-theme="light"] .spot-why-text {
+  color: #334155;
+}
+
+:root[data-theme="light"] .spot-footer {
+  border-top-color: rgba(15, 23, 42, 0.12);
+}
+
+:root[data-theme="light"] .spot-tag {
+  background: #f1f5f9;
+  border-color: rgba(15, 23, 42, 0.16);
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .spot-domain {
+  color: #0369a1;
+}
+
+:root[data-theme="light"] .action-btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--spot-color, #0284c7),
+    color-mix(in srgb, var(--spot-color, #0284c7) 78%, #0f172a)
+  );
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--spot-color, #0284c7) 28%, transparent);
+}
+
+:root[data-theme="light"] .action-btn-primary.is-disabled {
+  background: #e2e8f0;
+  border: 1px dashed rgba(15, 23, 42, 0.3);
+  color: #475569;
+  box-shadow: none;
+}
+
+:root[data-theme="light"] .action-btn-secondary {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.22);
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .action-btn-secondary:hover {
+  border-color: #0284c7;
+  background: rgba(2, 132, 199, 0.08);
+  color: #0369a1;
+  box-shadow: none;
+}
+
+:root[data-theme="light"] .action-btn-secondary.is-active {
+  border-color: #047857;
+  background: rgba(4, 120, 87, 0.12);
+  color: #065f46;
+  box-shadow: none;
+}
+
+/* 淺色週期表元素磚（休眠高對比白底 + 已點亮深寶石色） */
+:root[data-theme="light"] .el-tile {
+  background: rgba(255, 255, 255, 0.92);
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .el-num {
+  color: color-mix(in srgb, var(--el-color) 82%, #0f172a);
+}
+
+:root[data-theme="light"] .el-symbol {
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .el-zh {
+  color: #334155;
+}
+
+:root[data-theme="light"] .el-tile.is-dormant {
+  opacity: 0.72;
+  background: rgba(255, 255, 255, 0.9);
+  border-color: color-mix(in srgb, var(--el-color) 42%, rgba(15, 23, 42, 0.22));
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+}
+
+:root[data-theme="light"] .el-tile.is-dormant:hover {
+  opacity: 1;
+  background: color-mix(in srgb, var(--el-color) 10%, #ffffff);
+  border-color: var(--el-color);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+}
+
+:root[data-theme="light"] .el-tile.is-lit {
+  opacity: 1;
+  background: linear-gradient(
+    155deg,
+    color-mix(in srgb, var(--el-color) 18%, #ffffff),
+    color-mix(in srgb, var(--el-color) 7%, #ffffff)
+  );
+  border: 1.8px solid var(--el-color);
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--el-color) 22%, transparent);
+  animation: none;
+}
+
+:root[data-theme="light"] .el-tile.is-lit .el-symbol {
+  color: #0f172a;
+  text-shadow: none;
+}
+
+:root[data-theme="light"] .el-tile.is-lit .el-zh {
+  color: color-mix(in srgb, var(--el-color) 72%, #0f172a);
+  font-weight: 700;
+}
+
+:root[data-theme="light"] .el-tile.is-lit:hover {
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--el-color) 32%, transparent);
+}
+
+:root[data-theme="light"] .el-tile.is-locked {
+  border-color: #0f172a !important;
+  box-shadow:
+    inset 0 0 0 1.5px #0f172a,
+    0 0 0 2.5px var(--el-color),
+    0 8px 20px color-mix(in srgb, var(--el-color) 28%, transparent) !important;
+}
+
+:root[data-theme="light"] .el-tile.is-dimmed {
+  opacity: 0.24 !important;
+}
+
+:root[data-theme="light"] .series-marker {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: color-mix(in srgb, var(--el-color) 55%, rgba(15, 23, 42, 0.2));
+  color: color-mix(in srgb, var(--el-color) 85%, #0f172a);
+}
+
+/* 淺色左下角 10 色領域色環 */
+:root[data-theme="light"] .family-wheel-slot {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(15, 23, 42, 0.14);
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+}
+
+:root[data-theme="light"] .wheel-center-circle {
+  fill: #ffffff;
+  stroke: rgba(15, 23, 42, 0.25);
+}
+
+:root[data-theme="light"] .wheel-center-btn:hover .wheel-center-circle {
+  fill: #f0f9ff;
+  stroke: #0284c7;
+}
+
+:root[data-theme="light"] .wheel-center-text {
+  fill: #0f172a;
+}
+
+:root[data-theme="light"] .wheel-legend-kicker {
+  color: #475569;
+}
+
+:root[data-theme="light"] .wheel-legend-title {
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .wheel-legend-sub {
+  color: #334155;
+}
+
+/* 淺色清單視圖 */
+:root[data-theme="light"] .list-section-title {
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .list-project-card {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: color-mix(in srgb, var(--el-color) 48%, rgba(15, 23, 42, 0.14));
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+}
+
+:root[data-theme="light"] .list-symbol-badge {
+  background: color-mix(in srgb, var(--el-color) 12%, #ffffff);
+}
+
+:root[data-theme="light"] .list-symbol-badge strong,
+:root[data-theme="light"] .list-symbol-badge span {
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .list-dormant-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: color-mix(in srgb, var(--el-color) 32%, rgba(15, 23, 42, 0.14));
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .list-dormant-card div:first-child {
+  color: #0f172a !important;
+}
+
+:root[data-theme="light"] .list-dormant-card div:last-child {
+  color: #334155 !important;
+}
+
+:root[data-theme="light"] .list-mini-sym {
+  background: color-mix(in srgb, var(--el-color) 12%, #ffffff);
+  color: #0f172a;
+}
+
+/* 淺色元素探勘區（暖白底 + 深琥珀進度條） */
+:root[data-theme="light"] .mining-zone {
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.95), rgba(255, 251, 235, 0.92));
+  border-color: rgba(180, 83, 9, 0.22);
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+}
+
+:root[data-theme="light"] .mining-zone::before {
+  background: linear-gradient(90deg, transparent, #b45309, #0284c7, #6d28d9, transparent);
+}
+
+:root[data-theme="light"] .mining-kicker {
+  color: #b45309;
+}
+
+:root[data-theme="light"] .mining-title {
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .mining-subtitle {
+  color: #334155;
+}
+
+:root[data-theme="light"] .radar-btn {
+  background: linear-gradient(135deg, #0369a1, #0284c7);
+  border-color: #0369a1;
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(3, 105, 161, 0.25);
+}
+
+:root[data-theme="light"] .vein-card {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(180, 83, 9, 0.24);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+}
+
+:root[data-theme="light"] .vein-codename {
+  color: #b45309;
+}
+
+:root[data-theme="light"] .vein-stage {
+  background: rgba(180, 83, 9, 0.12);
+  border-color: rgba(180, 83, 9, 0.34);
+  color: #92400e;
+}
+
+:root[data-theme="light"] .vein-sector {
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .vein-hint,
+:root[data-theme="light"] .vein-progress-meta,
+:root[data-theme="light"] .vein-energy {
+  color: #334155;
+}
+
+:root[data-theme="light"] .vein-bar-track {
+  background: rgba(15, 23, 42, 0.1);
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+:root[data-theme="light"] .vein-bar-fill {
+  background: linear-gradient(90deg, #b45309, #d97706);
+  box-shadow: none;
+}
+
+:root[data-theme="light"] .vein-footer {
+  border-top-color: rgba(15, 23, 42, 0.1);
+}
+
+:root[data-theme="light"] .vein-energy strong {
+  color: #b45309;
+}
+
+:root[data-theme="light"] .mine-btn {
+  background: rgba(180, 83, 9, 0.12);
+  border-color: rgba(180, 83, 9, 0.42);
+  color: #92400e;
+}
+
+:root[data-theme="light"] .mine-btn:hover {
+  background: #b45309;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(180, 83, 9, 0.28);
+}
+
+/* 淺色浮動提示、頁尾與 Toast */
+:root[data-theme="light"] .hover-pill {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(15, 23, 42, 0.2);
+  color: #0f172a;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.15);
+}
+
+:root[data-theme="light"] .hover-pill-hint {
+  color: #475569;
+}
+
+:root[data-theme="light"] .site-footer {
+  border-top-color: rgba(15, 23, 42, 0.12);
+  color: #475569;
+}
+
+:root[data-theme="light"] .site-footer kbd {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.25);
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .toast-item {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(2, 132, 199, 0.42);
+  color: #0f172a;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.16);
 }

@@ -62,6 +62,7 @@ export function initConstellation(canvasId = 'constellation-canvas') {
   function renderFrame(time) {
     ctx.clearRect(0, 0, width, height);
 
+    const isLight = document.documentElement.dataset.theme === 'light';
     const linkDist = width < 768 ? 110 : 148;
     const mouseDist = 175;
 
@@ -110,8 +111,10 @@ export function initConstellation(canvasId = 'constellation-canvas') {
         const dy = p.y - q.y;
         const dist = Math.hypot(dx, dy);
         if (dist < linkDist) {
-          const alpha = (1 - dist / linkDist) * 0.16;
-          ctx.strokeStyle = `rgba(110, 198, 255, ${alpha.toFixed(3)})`;
+          const alpha = (1 - dist / linkDist) * (isLight ? 0.14 : 0.16);
+          ctx.strokeStyle = isLight
+            ? `rgba(15, 23, 42, ${alpha.toFixed(3)})`
+            : `rgba(110, 198, 255, ${alpha.toFixed(3)})`;
           ctx.lineWidth = 0.75;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
@@ -126,8 +129,10 @@ export function initConstellation(canvasId = 'constellation-canvas') {
         const mdy = mouse.y - p.y;
         const mDist = Math.hypot(mdx, mdy);
         if (mDist < mouseDist) {
-          const alpha = (1 - mDist / mouseDist) * 0.28;
-          ctx.strokeStyle = `rgba(0, 230, 118, ${alpha.toFixed(3)})`;
+          const alpha = (1 - mDist / mouseDist) * (isLight ? 0.22 : 0.28);
+          ctx.strokeStyle = isLight
+            ? `rgba(2, 132, 199, ${alpha.toFixed(3)})`
+            : `rgba(0, 230, 118, ${alpha.toFixed(3)})`;
           ctx.lineWidth = 0.85;
           ctx.beginPath();
           ctx.moveTo(p.x, p.y);
@@ -138,7 +143,7 @@ export function initConstellation(canvasId = 'constellation-canvas') {
 
       // 粒子節點
       const pulse = reducedMotion ? 1 : 0.78 + 0.22 * Math.sin(time * 0.0018 + p.phase);
-      ctx.fillStyle = p.color;
+      ctx.fillStyle = isLight ? 'rgba(15, 23, 42, 0.22)' : p.color;
       ctx.globalAlpha = pulse;
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -166,12 +171,21 @@ export function initConstellation(canvasId = 'constellation-canvas') {
   window.addEventListener('mousemove', handleMouseMove, { passive: true });
   window.addEventListener('mouseleave', handleMouseLeave, { passive: true });
 
+  const themeObserver = new MutationObserver(() => {
+    if (reducedMotion) renderFrame(0);
+  });
+  themeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+
   if (!reducedMotion) {
     rafId = window.requestAnimationFrame(renderFrame);
   }
 
   return () => {
     if (rafId) window.cancelAnimationFrame(rafId);
+    themeObserver.disconnect();
     window.removeEventListener('resize', resize);
     window.removeEventListener('mousemove', handleMouseMove);
     window.removeEventListener('mouseleave', handleMouseLeave);

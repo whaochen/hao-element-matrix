@@ -8,7 +8,7 @@
  *
  * 屬性：
  *   symbol  元素符號（如 C / O / Ti），預設 C
- *   theme   dark（深色底）| light（淺色底），預設 dark
+ *   theme   dark（深色底）| light（淺色底）| auto（跟隨頁面 data-theme 或系統深淺色），預設 dark
  *   compact true 時僅顯示迷你元素方塊與 ↗，預設 false
  */
 (() => {
@@ -130,7 +130,8 @@
 
     :host([hidden]) { display: none; }
 
-    :host([theme="light"]) {
+    :host([theme="light"]),
+    :host([data-resolved-theme="light"]) {
       --hb-bg: rgba(255, 255, 255, 0.94);
       --hb-border: color-mix(in srgb, var(--hb-color) 56%, rgba(15, 23, 42, 0.18));
       --hb-text: #0f172a;
@@ -255,7 +256,8 @@
       font-weight: 800;
     }
 
-    :host([theme="light"]) .arrow {
+    :host([theme="light"]) .arrow,
+    :host([data-resolved-theme="light"]) .arrow {
       color: color-mix(in srgb, var(--hb-color) 70%, #0f172a);
     }
 
@@ -304,15 +306,85 @@
     }
 
     connectedCallback() {
+      this._setupAutoThemeListeners();
       this._render();
     }
 
-    attributeChangedCallback() {
+    disconnectedCallback() {
+      this._teardownAutoThemeListeners();
+    }
+
+    attributeChangedCallback(name) {
+      if (name === 'theme') {
+        this._syncResolvedTheme();
+      }
       this._render();
+    }
+
+    _resolveAutoTheme() {
+      if (typeof document !== 'undefined') {
+        const docTheme = document.documentElement?.getAttribute('data-theme');
+        if (docTheme === 'light' || docTheme === 'dark') {
+          return docTheme;
+        }
+      }
+      if (typeof window !== 'undefined' && window.matchMedia) {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      return 'dark';
+    }
+
+    _syncResolvedTheme() {
+      const attrTheme = (this.getAttribute('theme') || 'dark').toLowerCase();
+      if (attrTheme === 'auto') {
+        this.setAttribute('data-resolved-theme', this._resolveAutoTheme());
+      } else {
+        this.removeAttribute('data-resolved-theme');
+      }
+    }
+
+    _setupAutoThemeListeners() {
+      this._teardownAutoThemeListeners();
+      this._syncResolvedTheme();
+
+      if (typeof document !== 'undefined' && document.documentElement && typeof MutationObserver !== 'undefined') {
+        this._themeObserver = new MutationObserver(() => {
+          if ((this.getAttribute('theme') || '').toLowerCase() === 'auto') {
+            this._syncResolvedTheme();
+          }
+        });
+        this._themeObserver.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ['data-theme']
+        });
+      }
+
+      if (typeof window !== 'undefined' && window.matchMedia) {
+        this._mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        this._onMediaChange = () => {
+          if ((this.getAttribute('theme') || '').toLowerCase() === 'auto') {
+            this._syncResolvedTheme();
+          }
+        };
+        this._mediaQuery.addEventListener('change', this._onMediaChange);
+      }
+    }
+
+    _teardownAutoThemeListeners() {
+      if (this._themeObserver) {
+        this._themeObserver.disconnect();
+        this._themeObserver = null;
+      }
+      if (this._mediaQuery && this._onMediaChange) {
+        this._mediaQuery.removeEventListener('change', this._onMediaChange);
+        this._mediaQuery = null;
+        this._onMediaChange = null;
+      }
     }
 
     _render() {
       if (!this._link) return;
+      this._syncResolvedTheme();
       const symbol = resolveSymbol(this.getAttribute('symbol'));
       const el = ELEMENTS[symbol];
 
