@@ -499,7 +499,7 @@ function renderPeriodicGrid() {
 
     const btn = document.createElement('button');
     btn.type = 'button';
-    btn.className = `el-tile ${isLit ? 'is-lit' : 'is-dormant'}`;
+    btn.className = `el-tile ${isLit ? 'is-lit is-active' : 'is-dormant'}`;
     btn.dataset.symbol = el.symbol;
     btn.dataset.family = el.family;
     btn.style.gridColumn = String(el.col);
@@ -785,6 +785,8 @@ function matchesElement(el) {
 function applyFilters() {
   const hasFilter = Boolean(state.litOnly || state.selectedFamily || state.searchQuery.trim());
   let matchCount = 0;
+
+  dom.periodicGrid.classList.toggle('is-family-filtered', Boolean(state.selectedFamily));
 
   dom.periodicGrid.querySelectorAll('.el-tile').forEach((tile) => {
     const el = state.elementsBySymbol.get(tile.dataset.symbol);

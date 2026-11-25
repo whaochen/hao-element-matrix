@@ -1178,11 +1178,14 @@ body {
 }
 
 .el-live-indicator {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: var(--accent-live);
-  box-shadow: 0 0 8px var(--accent-live), 0 0 14px var(--accent-live);
+  background: #00e676;
+  box-shadow:
+    0 0 0 2px rgba(0, 230, 118, 0.28),
+    0 0 10px #00e676,
+    0 0 18px #00e676;
   animation: pulseDot 1.8s ease-in-out infinite;
 }
 
@@ -1203,38 +1206,68 @@ body {
   text-overflow: ellipsis;
 }
 
-/* 狀態 1：休眠元素（暗玻璃半透明骨架，滑鼠移入亮起） */
+/* 狀態 1：休眠元素（深色低調冷灰細框骨架；移入或色環篩選時才顯現元素色彩） */
 .el-tile.is-dormant {
-  opacity: 0.44;
-  background: rgba(9, 14, 28, 0.64);
+  opacity: 0.34;
+  border: 1px solid rgba(148, 163, 184, 0.14);
+  background: rgba(10, 15, 28, 0.56);
+}
+
+.el-tile.is-dormant .el-num,
+.el-tile.is-dormant .el-symbol,
+.el-tile.is-dormant .el-zh {
+  color: #94a3b8;
+}
+
+.el-tile.is-dormant:hover,
+.periodic-grid.is-family-filtered .el-tile.is-dormant:not(.is-dimmed) {
+  opacity: 0.92;
+  border-color: color-mix(in srgb, var(--el-color) 78%, #ffffff);
+  background: color-mix(in srgb, var(--el-color) 14%, rgba(12, 19, 36, 0.92));
+}
+
+.el-tile.is-dormant:hover .el-num,
+.periodic-grid.is-family-filtered .el-tile.is-dormant:not(.is-dimmed) .el-num {
+  color: color-mix(in srgb, var(--el-color) 78%, #e2e8f0);
+}
+
+.el-tile.is-dormant:hover .el-symbol,
+.periodic-grid.is-family-filtered .el-tile.is-dormant:not(.is-dimmed) .el-symbol {
+  color: #f8fafc;
+}
+
+.el-tile.is-dormant:hover .el-zh,
+.periodic-grid.is-family-filtered .el-tile.is-dormant:not(.is-dimmed) .el-zh {
+  color: #cbd5e1;
 }
 
 .el-tile.is-dormant:hover {
-  opacity: 0.96;
+  opacity: 0.98;
   transform: translateY(-2px) scale(1.05);
   z-index: 5;
-  border-color: color-mix(in srgb, var(--el-color) 85%, #ffffff);
-  background: color-mix(in srgb, var(--el-color) 16%, rgba(12, 19, 36, 0.94));
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 16px color-mix(in srgb, var(--el-color) 35%, transparent);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5), 0 0 16px color-mix(in srgb, var(--el-color) 38%, transparent);
 }
 
-/* 狀態 2：已點亮元素（高飽和霓虹邊框、呼吸發光光暈、掃描光澤、懸浮放大） */
-.el-tile.is-lit {
+/* 狀態 2：已開通元素（2.5px 霓虹粗框、雙層外發光、呼吸光環與掃描光澤） */
+.el-tile.is-lit,
+.el-tile.is-active {
   opacity: 1;
   background: linear-gradient(
     155deg,
-    color-mix(in srgb, var(--el-color) 30%, rgba(10, 22, 30, 0.96)),
-    rgba(6, 14, 24, 0.96)
+    color-mix(in srgb, var(--el-color) 30%, #071124),
+    rgba(6, 12, 24, 0.96)
   );
-  border: 1.5px solid color-mix(in srgb, var(--el-color) 92%, #ffffff);
+  border: 2.5px solid var(--el-color);
   box-shadow:
-    0 0 18px color-mix(in srgb, var(--el-color) 42%, transparent),
-    inset 0 0 14px color-mix(in srgb, var(--el-color) 20%, transparent);
-  animation: litBreath 3.2s ease-in-out infinite;
+    0 0 12px color-mix(in srgb, var(--el-color) 85%, transparent),
+    0 0 26px color-mix(in srgb, var(--el-color) 48%, transparent),
+    inset 0 0 14px color-mix(in srgb, var(--el-color) 28%, transparent);
+  animation: litBreath 2.6s ease-in-out infinite;
   z-index: 3;
 }
 
-.el-tile.is-lit::after {
+.el-tile.is-lit::after,
+.el-tile.is-active::after {
   content: "";
   position: absolute;
   top: -40%;
@@ -1244,7 +1277,7 @@ body {
   background: linear-gradient(
     105deg,
     transparent,
-    rgba(255, 255, 255, 0.28),
+    rgba(255, 255, 255, 0.30),
     transparent
   );
   transform: rotate(18deg);
@@ -1252,35 +1285,47 @@ body {
   pointer-events: none;
 }
 
-.el-tile.is-lit .el-symbol {
+.el-tile.is-lit .el-symbol,
+.el-tile.is-active .el-symbol {
   color: #ffffff;
-  text-shadow: 0 0 12px color-mix(in srgb, var(--el-color) 75%, transparent);
+  font-weight: 900;
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.7),
+    0 0 18px color-mix(in srgb, var(--el-color) 88%, transparent);
 }
 
-.el-tile.is-lit .el-zh {
-  color: #f1f5f9;
-  font-weight: 600;
-  font-size: 0.6rem;
+.el-tile.is-lit .el-zh,
+.el-tile.is-active .el-zh {
+  color: #f8fafc;
+  font-weight: 700;
+  font-size: 0.61rem;
   letter-spacing: -0.02em;
 }
 
-.el-tile.is-lit:hover {
+.el-tile.is-lit:hover,
+.el-tile.is-active:hover {
   transform: translateY(-3px) scale(1.09);
   z-index: 7;
   box-shadow:
-    0 10px 26px rgba(0, 0, 0, 0.6),
-    0 0 28px color-mix(in srgb, var(--el-color) 65%, transparent);
+    0 10px 28px rgba(0, 0, 0, 0.65),
+    0 0 16px color-mix(in srgb, var(--el-color) 92%, transparent),
+    0 0 34px color-mix(in srgb, var(--el-color) 65%, transparent);
 }
 
-/* 狀態 3：已鎖定元素（白色內框 + 霓虹外光環） */
+/* 狀態 3：已鎖定元素（雙層外擴高對比聚焦環 + 微浮起 scale(1.08)） */
 .el-tile.is-locked {
   opacity: 1 !important;
-  z-index: 6;
+  z-index: 8;
+  transform: scale(1.08);
   border-color: #ffffff !important;
   box-shadow:
-    inset 0 0 0 1.5px rgba(255, 255, 255, 0.94),
-    0 0 0 2px var(--el-color),
-    0 0 24px color-mix(in srgb, var(--el-color) 68%, transparent) !important;
+    0 0 0 2px #ffffff,
+    0 0 0 4.5px var(--el-color),
+    0 0 28px color-mix(in srgb, var(--el-color) 80%, transparent) !important;
+}
+
+.el-tile.is-locked:hover {
+  transform: scale(1.1);
 }
 
 /* 篩選淡出 */
@@ -1897,13 +1942,30 @@ body {
 @keyframes litBreath {
   0%, 100% {
     box-shadow:
-      0 0 16px color-mix(in srgb, var(--el-color) 36%, transparent),
-      inset 0 0 12px color-mix(in srgb, var(--el-color) 18%, transparent);
+      0 0 12px color-mix(in srgb, var(--el-color) 82%, transparent),
+      0 0 24px color-mix(in srgb, var(--el-color) 44%, transparent),
+      inset 0 0 12px color-mix(in srgb, var(--el-color) 24%, transparent);
   }
   50% {
     box-shadow:
-      0 0 26px color-mix(in srgb, var(--el-color) 58%, transparent),
-      inset 0 0 18px color-mix(in srgb, var(--el-color) 28%, transparent);
+      0 0 16px color-mix(in srgb, var(--el-color) 95%, transparent),
+      0 0 34px color-mix(in srgb, var(--el-color) 65%, transparent),
+      inset 0 0 18px color-mix(in srgb, var(--el-color) 36%, transparent);
+  }
+}
+
+@keyframes litBreathLight {
+  0%, 100% {
+    box-shadow:
+      0 0 0 2px color-mix(in srgb, var(--el-color) 24%, transparent),
+      0 0 16px color-mix(in srgb, var(--el-color) 48%, transparent),
+      0 6px 14px color-mix(in srgb, var(--el-color) 24%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 0 3px color-mix(in srgb, var(--el-color) 35%, transparent),
+      0 0 24px color-mix(in srgb, var(--el-color) 68%, transparent),
+      0 8px 20px color-mix(in srgb, var(--el-color) 38%, transparent);
   }
 }
 
@@ -2505,70 +2567,113 @@ body {
   box-shadow: none;
 }
 
-/* 淺色週期表元素磚（休眠高對比白底 + 已點亮深寶石色） */
+/* 淺色週期表元素磚（休眠柔和灰階骨架 + 已開通高飽和深寶石色光環） */
 :root[data-theme="light"] .el-tile {
-  background: rgba(255, 255, 255, 0.92);
-  color: #0f172a;
-}
-
-:root[data-theme="light"] .el-num {
-  color: color-mix(in srgb, var(--el-color) 82%, #0f172a);
-}
-
-:root[data-theme="light"] .el-symbol {
-  color: #0f172a;
-}
-
-:root[data-theme="light"] .el-zh {
-  color: #334155;
+  background: #f1f5f9;
+  color: #64748b;
 }
 
 :root[data-theme="light"] .el-tile.is-dormant {
-  opacity: 0.72;
-  background: rgba(255, 255, 255, 0.9);
-  border-color: color-mix(in srgb, var(--el-color) 42%, rgba(15, 23, 42, 0.22));
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  opacity: 0.92;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  box-shadow: none;
 }
 
-:root[data-theme="light"] .el-tile.is-dormant:hover {
+:root[data-theme="light"] .el-tile.is-dormant .el-num,
+:root[data-theme="light"] .el-tile.is-dormant .el-symbol,
+:root[data-theme="light"] .el-tile.is-dormant .el-zh {
+  color: #64748b;
+}
+
+:root[data-theme="light"] .el-tile.is-dormant:hover,
+:root[data-theme="light"] .periodic-grid.is-family-filtered .el-tile.is-dormant:not(.is-dimmed) {
   opacity: 1;
   background: color-mix(in srgb, var(--el-color) 10%, #ffffff);
   border-color: var(--el-color);
+}
+
+:root[data-theme="light"] .el-tile.is-dormant:hover .el-num,
+:root[data-theme="light"] .periodic-grid.is-family-filtered .el-tile.is-dormant:not(.is-dimmed) .el-num {
+  color: color-mix(in srgb, var(--el-color) 85%, #0f172a);
+}
+
+:root[data-theme="light"] .el-tile.is-dormant:hover .el-symbol,
+:root[data-theme="light"] .periodic-grid.is-family-filtered .el-tile.is-dormant:not(.is-dimmed) .el-symbol {
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .el-tile.is-dormant:hover .el-zh,
+:root[data-theme="light"] .periodic-grid.is-family-filtered .el-tile.is-dormant:not(.is-dimmed) .el-zh {
+  color: #334155;
+}
+
+:root[data-theme="light"] .el-tile.is-dormant:hover {
   box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
 }
 
-:root[data-theme="light"] .el-tile.is-lit {
+:root[data-theme="light"] .el-tile.is-lit,
+:root[data-theme="light"] .el-tile.is-active {
   opacity: 1;
   background: linear-gradient(
     155deg,
     color-mix(in srgb, var(--el-color) 18%, #ffffff),
-    color-mix(in srgb, var(--el-color) 7%, #ffffff)
+    color-mix(in srgb, var(--el-color) 8%, #ffffff)
   );
-  border: 1.8px solid var(--el-color);
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--el-color) 22%, transparent);
-  animation: none;
+  border: 2.5px solid var(--el-color);
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--el-color) 25%, transparent),
+    0 0 18px color-mix(in srgb, var(--el-color) 55%, transparent),
+    0 6px 16px color-mix(in srgb, var(--el-color) 28%, transparent);
+  animation: litBreathLight 2.6s ease-in-out infinite;
 }
 
-:root[data-theme="light"] .el-tile.is-lit .el-symbol {
-  color: #0f172a;
-  text-shadow: none;
+:root[data-theme="light"] .el-tile.is-lit .el-num,
+:root[data-theme="light"] .el-tile.is-active .el-num {
+  color: color-mix(in srgb, var(--el-color) 85%, #0f172a);
 }
 
-:root[data-theme="light"] .el-tile.is-lit .el-zh {
-  color: color-mix(in srgb, var(--el-color) 72%, #0f172a);
+:root[data-theme="light"] .el-tile.is-lit .el-symbol,
+:root[data-theme="light"] .el-tile.is-active .el-symbol {
+  color: color-mix(in srgb, var(--el-color) 76%, #0f172a);
+  font-weight: 900;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+:root[data-theme="light"] .el-tile.is-lit .el-zh,
+:root[data-theme="light"] .el-tile.is-active .el-zh {
+  color: color-mix(in srgb, var(--el-color) 75%, #0f172a);
   font-weight: 700;
 }
 
-:root[data-theme="light"] .el-tile.is-lit:hover {
-  box-shadow: 0 10px 24px color-mix(in srgb, var(--el-color) 32%, transparent);
+:root[data-theme="light"] .el-tile.is-lit .el-live-indicator,
+:root[data-theme="light"] .el-tile.is-active .el-live-indicator {
+  background: #10b981;
+  box-shadow:
+    0 0 0 2px rgba(16, 185, 129, 0.28),
+    0 0 8px rgba(16, 185, 129, 0.78);
+}
+
+:root[data-theme="light"] .el-tile.is-lit:hover,
+:root[data-theme="light"] .el-tile.is-active:hover {
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--el-color) 34%, transparent),
+    0 0 24px color-mix(in srgb, var(--el-color) 65%, transparent),
+    0 10px 24px color-mix(in srgb, var(--el-color) 36%, transparent);
 }
 
 :root[data-theme="light"] .el-tile.is-locked {
+  transform: scale(1.08);
+  z-index: 8;
   border-color: #0f172a !important;
   box-shadow:
-    inset 0 0 0 1.5px #0f172a,
-    0 0 0 2.5px var(--el-color),
-    0 8px 20px color-mix(in srgb, var(--el-color) 28%, transparent) !important;
+    0 0 0 2px #0f172a,
+    0 0 0 4.5px var(--el-color),
+    0 10px 24px color-mix(in srgb, var(--el-color) 38%, transparent) !important;
+}
+
+:root[data-theme="light"] .el-tile.is-locked:hover {
+  transform: scale(1.1);
 }
 
 :root[data-theme="light"] .el-tile.is-dimmed {
